@@ -1,0 +1,34 @@
+d, g = map(int, input().split())
+p = list = [i for i in range(d)]
+c = list = [i for i in range(d)]
+goukei = list = [i for i in range(d)]
+for i in range(d):
+    p[i], c[i] = map(int, input().split())
+for i in range(d):
+    goukei[i] = (i+1)*p[i]*100+c[i]
+saisyou=g
+baai = 2**d
+for i in range(baai):
+    kouritu=0
+    saidai=0
+    tensu=0
+    for j in range(d):
+        if ((i>>j)&1):#フラグを確認する
+            tensu = tensu + goukei[j]
+            kouritu =kouritu + p[j]
+        else:
+            saidai = j
+    if tensu >= g:
+        if saisyou > kouritu:
+            saisyou = kouritu
+    else:
+        if tensu + goukei[saidai]>=g:
+            for k in range(p[saidai]):
+                tensu = tensu + ((saidai+1)*100)
+                kouritu =kouritu +1
+                if tensu>=g:
+                    if saisyou > kouritu:
+                        saisyou = kouritu
+print(saisyou)
+#二進数は1との論理和を見ることで対応可能
+#二進法に対応させる

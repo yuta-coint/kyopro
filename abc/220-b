@@ -1,0 +1,12 @@
+k = int(input())
+a,b = map(int,input().split())
+ak = 0
+bk = 0
+d = 1
+while a>0 or b > 0:
+    ak+= (a%10)*d
+    bk+= (b%10)*d
+    ak //=10
+    bk //=10
+    d *= k
+print(ak*bk)

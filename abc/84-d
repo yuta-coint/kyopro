@@ -1,0 +1,30 @@
+def sieve_of_eratosthenes(x):
+    nums = [i for i in range(x+1)]
+
+    root = int(pow(x,0.5))
+    for i in range(2,root + 1):
+        if nums[i] != 0:
+            for j in range(i, x+1):
+                if i*j >= x+1:
+                    break
+                nums[i*j] = 0
+
+    primes = sorted(list(set(nums)))[2:]
+
+    return primes
+
+
+p = sieve_of_eratosthenes(100001)
+c = [0 for i in range(100001)]
+for i in pn:
+    c[i]+=1
+d = [0 for i in range(100001)]
+for i in range(100000):
+    if c[(i+1)//2]==1 and c[i]==1:
+        d[i]=1
+for i in range(100000):
+    d[i+1] = d[i]+d[i+1]
+q = int(input())
+for i in range(q):
+    l,r = map(int,input().split())
+    print(d[r]-d[l-1])

@@ -1,0 +1,25 @@
+from heapq import heappush, heappop
+INF = 10 ** 9
+V,E,r = map(int,input().split())
+dist = [INF] * V
+G = [[]for i in range(V)]
+hq = [(0, r)] #(distance, node)
+dist[r] = 0
+seen = [False] * V # ノードが確定済みかどうか
+for i in range(E):
+    a,b,c = map(int,input().split())
+    G[a].append([c,b])
+while hq!=[]:
+    v = heappop(hq)[1] # ノードを pop する
+    #print(v)
+    seen[v] = True
+    for i in G[v]: # ノード v に隣接しているノードに対して
+        if seen[i[1]] == False and dist[v] + i[0] < dist[i[1]]:
+            dist[i[1]] = dist[v] + i[0]
+            heappush(hq, (dist[i[1]], i[1]))
+    #print(dist)
+for i in range(V):
+    if dist[i] == INF:
+        print("INF")
+    else:
+        print(dist[i])

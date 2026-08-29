@@ -1,0 +1,19 @@
+x,y,z,k = map(int,input().split())
+a = list(map(int,input().split()))
+b = list(map(int,input().split()))
+c = list(map(int,input().split()))
+ab = []
+for i in range(x):
+    for j in range(y):
+        ab.append(a[i]+b[j])
+
+ab.sort(reverse=True)
+if len(ab)>k:
+    ab = ab[:k]
+abc = []
+for i in c:
+    for j in ab:
+        abc.append(i+j)
+abc.sort(reverse=True)
+for i in range(k):
+    print(i)

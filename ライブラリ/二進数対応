@@ -1,0 +1,5 @@
+baai = 2**d
+for i in range(baai):
+    s = str(bin(i))  #二進法の文字列に変換
+    s=s[2:]
+    s = s.zfill(d)   #0で埋める

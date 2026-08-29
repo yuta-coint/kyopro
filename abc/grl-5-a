@@ -1,0 +1,38 @@
+import sys
+sys.setrecursionlimit(300000)
+import copy
+N =  int(input())
+G=[[] for i in range(N+1)]
+for i in range(N-1):
+    s,t,w=map(int,input().split())
+    G[s].append([w,t])
+    G[t].append([w,s])
+for i in range(N+1):G[i].sort()
+def dfs(v):
+    global max_depth
+    global depth
+    global sea
+    check[v]=1
+    for i in G[v]:
+        if check[i[1]]==0:
+            depth += i[0]
+            #print(depth,i)
+            if depth > max_depth:
+                max_depth = depth
+                sea = i[1]
+            dfs(i[1])
+            depth -= i[0]
+check=[0 for i in range(N+1)]
+check[0]=1
+sea = 0
+listd = []
+max_depth = 0
+for i in G[0]:
+    depth = i[0]
+    dfs(i[1])
+check=[0 for i in range(N+1)]
+check[sea]=1
+if N >1:
+    depth = G[sea][0][0]
+    dfs(G[sea][0][1])
+print(max_depth)

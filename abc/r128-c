@@ -1,0 +1,28 @@
+n,m,s = map(int,input().split())
+a = list(map(int,input().split()))
+asum = [0 for i in range(n+1)]
+for i in range(n):
+    asum[n-1]=a[n-1]+a[i]
+for i in reversed(range(n-1)):
+    asum[i]=asum[i+1]+a[i]
+point = 0
+ans = 0
+big = 10**9
+for j in reversed(range(1,n+1)):
+    ans = 0
+    if s<=0:
+        break
+    aav = [0 for i in range(j)]
+    for i in range(j):
+        aav[i] = (asum[i]-asum[j])*big//(j-i)
+    ma = max(aav)
+    mai = aav.index(ma)
+    if (j-mai)*m>=s:
+        for i in range(mai,j):
+            ans += a[i]*(s*big//(j-mai))
+        for i in range(j,n):
+            ans += m*a[i]*big
+        if point<ans:
+            point = ans
+    s-=m
+print(point/big)

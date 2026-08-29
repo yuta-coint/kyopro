@@ -1,0 +1,30 @@
+v,e = map(int,input().split())
+graph = []
+def kruskal(graph,v,e):
+    tree = [i for i in range(v)]
+
+    def find(i):
+        if tree[i] == i:
+            return i
+        else:
+            tree[i]= find(tree[i])
+            return find(tree[i])
+
+    def union(a,b):
+        if tree[a] > tree[b]:
+            a,b = b,a
+        tree[find(b)] = find(a)
+    ans = 0
+    graph.sort()
+    for cost,edgel,edger in graph:
+        #print(tree)
+        if find(edgel)!=find(edger):
+            union(edgel,edger)
+            ans += cost
+        #print(ans)
+    return(ans)
+
+for i in range(e):
+    s,t,w = map(int,input().split())
+    graph.append((w,s,t))
+print(kruskal(graph,v,e))

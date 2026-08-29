@@ -1,0 +1,22 @@
+n = int(input())
+a = list(map(int,input().split()))
+asum = 0
+cnt1 = 0
+cnt2 = 0
+t = 1
+#正になってほしいか
+for i in range(n):
+    t*=-1
+    asum += a[i]
+    if asum*t<=0:
+        cnt1+= abs(asum)+1
+        asum=t
+t = -1
+asum = 0
+for i in range(n):
+    t*=-1
+    asum += a[i]
+    if asum*t<=0:
+        cnt2+= abs(asum)+1
+        asum=t
+print(min(cnt1,cnt2))

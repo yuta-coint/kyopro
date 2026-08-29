@@ -1,0 +1,18 @@
+n, k = map(int,input().split())
+a = list(map(int,input().split()))
+a.sort()
+pre = -1
+b = []
+for i in range(n):
+    if pre == n[i]:
+        b.append(cnt)
+        cnt = 1
+    else:
+        cnt += 1
+b.append(cnt)
+b.sort()
+ans = 0
+if len(b)-k>0:
+    for i in range(len(b)-k):
+        ans += b[i]
+print(ans)

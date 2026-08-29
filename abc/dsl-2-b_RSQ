@@ -1,0 +1,22 @@
+#RSQ
+n,q = map(int,input().split())
+#n:数列の長さ
+BIT = [0 for i in range(n+1)]
+def add(i,x):
+    while i<=n:
+        BIT[i]+=x
+        i += (i&-i)
+#xまでの和をとる
+def getSum(x):
+    i = x
+    gs = 0
+    while i>0:
+        gs+=BIT[i]
+        i -= (i&-i)
+    return gs
+for i in range(q):
+    com,x,y = map(int,input().split())
+    if com ==0:
+        add(x,y)
+    else:
+        print(getSum(y)-getSum(x-1))

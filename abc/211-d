@@ -1,0 +1,31 @@
+N,M = map(int,input().split())
+G = [[] for i in range(N+1)]
+MOD = 10**9+7
+INF = 10**9
+for i in range(M):
+    a,b = map(int,input().split())
+    G[a].append(b)
+    G[b].append(a)
+check = [0 for i in range(N+1)]
+check[1] = 1
+rank = [INF for i in range(N+1)]
+rank[1]=0
+ans = [0 for i in range(N+1)]
+ans[1] = 1
+import queue
+q = queue.Queue()
+q.put(1)
+while not q.empty():
+    v = q.get()
+    #print(v)
+    for i in G[v]:
+        if check[i] == 0:
+            q.put(i)
+            check[i]=1
+            if rank[i]>rank[v]+1:
+                rank[i] = rank[v]+1
+        if rank[i] == rank[v]+1:
+            ans[i]+=ans[v]
+            ans[i]%=MOD
+            #print(ans)
+print(ans[N])

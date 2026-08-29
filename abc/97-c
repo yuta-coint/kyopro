@@ -1,0 +1,11 @@
+s = input()
+k = int(input())
+sl = [[]for i in range(5)]
+sl[0] = list(s)
+for i in range(1,5):
+    for j in range(len(s)-i):
+        sl[i][j]=sl[0][j]+sl[i-1][j+1]
+ans = sl[0]+sl[1]+sl[2]+sl[3]+sl[4]
+ans = sorted(set(ans))
+print(ans[k-1])
+    

@@ -1,0 +1,33 @@
+n,q = map(int,input().split())
+tree = [i for i in range(n)]
+weight = [0 for i in range(n)]
+def find(i):
+    global weight
+    if tree[i] == i:
+        weight[i]=0
+        return i
+    else:
+        findi = find(tree[i])
+        weight[i] += weight[tree[i]]
+        y = findi
+        return y
+
+def union(a,b,c):
+    if tree[a] > tree[b]:
+        a,b = b,a
+        c = -c
+    weight[b]=c
+    tree[find(b)] = find(a)
+
+def diff(x,y):
+    findxy = find(x,y)
+for i in range(q):
+    query = list(map(int,input().split()))
+    if query[0] == 0:
+        union(query[1],query[2],query[3])
+    else:
+        q1,q2 = query[1],query[2]
+        if find(q1)==find(q2):
+            print(diff(q1,q2))
+        else:
+            print("?")

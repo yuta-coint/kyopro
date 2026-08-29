@@ -1,0 +1,26 @@
+T = int(input())
+
+def ans(s,t):
+    if s>t:
+        s,t = t,s
+    r = -1
+    if (s-t)%3==0:
+        r = (2*t+s)//3
+        r += (t-s)//3
+    return(r)
+for i in range(T):
+    p,q,r = map(int,input().split())
+    a = 10**9
+    k = ans(p,q)
+    if k>0 and k<a:
+        a = k
+    k = ans(r,q)
+    if k>0 and k<a:
+        a = k
+    k = ans(r,p)
+    if k>0 and k<a:
+        a = k
+    if a == 10**9:
+        print(-1)
+    else:
+        print(a)

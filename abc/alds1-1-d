@@ -1,0 +1,12 @@
+n = int(input())
+a = [int(input()) for i in range(n)]
+max = a[0]*(-1)
+min = a[0]
+rieki = 0
+for i in range(1,n):
+    rieki = a[i]-min
+    if rieki > max:
+        max = rieki
+    if a[i]<min:
+        min = a[i]
+print(max)

@@ -1,0 +1,12 @@
+#再帰と同じ順で処理できるdfs
+function 深さ優先探索(v)
+    S ← 空のスタック
+    v を S に積む
+    while S が空ではない do
+        v ← S から取り出す
+	   if vが訪問済み
+                         continue
+	   vに訪問済みの印をつける
+        v を処理する
+        for each v に接続している頂点 i do
+            i を S に積む

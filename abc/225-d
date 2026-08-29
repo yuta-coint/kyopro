@@ -1,0 +1,28 @@
+import sys
+input = sys.stdin.readline
+n,q = map(int,input().split())
+next = [0 for i in range(n+1)]
+root = [0 for i in range(n+1)]
+for i in range(q):
+    query = list(map(int,input().split()))
+    if query[0]==1:
+        next[query[1]]=query[2]
+        root[query[2]]=query[1]
+    elif query[0]==2:
+        next[query[1]]=0
+        root[query[2]]=0
+    else:
+        s = query[1]
+        for j in range(n):
+            if root[s]==0:
+                break
+            else:
+                s = root[s]
+        ans = []
+        for j in range(n):
+            ans.append(s)
+            if next[s]==0:
+                break
+            else:
+                s=next[s]
+        print(*[len(ans)]+ans)

@@ -1,0 +1,38 @@
+n = int(input())
+a=[]
+b=[]
+point = []
+for i in range(n):
+    an,bn = map(int,input().split())
+    a.append(an)
+    b.append(an+bn)
+    point.append(an)
+    point.append(an+bn)
+q = sorted(set(point))
+d = {v:i for i, v in enumerate(q)}
+#aの要素に対して「vに対してd[v]を返す」
+coma = list(map(lambda v:d[v],a))
+comb = list(map(lambda v:d[v],b))
+BIT = [0 for i in range(n*2+1)]
+def add(i,x):
+    while i<=n*2:
+        BIT[i]+=x
+        i += (i&-i)
+
+def getSum(x):
+    i = x
+    gs = 0
+    while i>0:
+        gs+=BIT[i]
+        i -= (i&-i)
+    return gs
+
+for i in range(n):
+    add(coma[i]+1,1)
+    add(comb[i]+1,-1)
+ans = [0 for i in range(n+1)]
+
+for i in range(1,2*n+1):
+    p = getSum(i)
+    ans[p]+=q[i+1]-q[i]
+print(*ans)

@@ -1,0 +1,20 @@
+N = list(int(input()))
+N.sort(reverse=True)
+print(N)
+l = len(N)
+ans = 0
+for i in range(2**l):
+    j = i
+    p = 0
+    q = 0
+    for k in range(l):
+        if j%2 == 0:
+            p *= 10
+            p += N[k]
+        else:
+            q *= 10
+            q += N[k]
+        j //= 2
+    if p*q > ans:
+        ans = p*q
+print(ans)

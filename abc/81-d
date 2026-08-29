@@ -1,0 +1,20 @@
+N= int(input())
+a = list(map(int,input().split()))
+max_a = max(a)
+min_a = min(a)
+M = a.index(max_a)
+m = a.index(min_a)
+if max(a)+min(a) >= 0:
+    print(2*N-2)
+    for i in range(N):
+        if i != M:
+            print(M+1,i+1)
+    for i in range(N-1):
+        print(i+1,i+2)
+else:
+    print(2*N-2)
+    for i in range(N):
+        if i != m:
+            print(m+1,i+1)
+    for i in reversed(range(N-1)):
+        print(i+2,i+1)

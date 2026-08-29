@@ -1,0 +1,12 @@
+a, b, c, x, y =map(int,input().split())
+pair = min(a+b, 2*c)
+price=0
+if x < y:
+    remain = min(b, 2*c)
+    price=(y-x)*remain
+    price=x*pair + price
+else:
+    remain = min(a, 2*c)
+    price=(x-y)*remain
+    price=y*pair + price
+print(price)

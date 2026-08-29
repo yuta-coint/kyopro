@@ -1,0 +1,7 @@
+import math
+n = int(input())
+ans = 1
+for i in range(n):
+    t = int(input())
+    ans = t*ans//math.gcd(t,ans)
+print(ans)

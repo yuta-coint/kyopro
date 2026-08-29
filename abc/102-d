@@ -1,0 +1,44 @@
+n = int(input())
+a = list(map(int,input().split()))
+pq = []
+rs = []
+sa = 0
+half = 0
+j = 0
+for i in range(n):
+    sa += a[i]
+    m = max(half,sa-half)
+    while half*2<sa:
+        half += a[j]
+        if half<m and sa-half<m:
+            m = max(half,sa-half)
+            j+=1
+        else:
+            half-=a[j]
+            break
+    pq.append((sa-m,m))
+sa = 0
+half = 0
+j = n-1
+for i in reversed(range(n)):
+    sa += a[i]
+    m = max(half,sa-half)
+    while half*2<sa:
+        half += a[j]
+        if half<m and sa-half<m:
+            m = max(half,sa-half)
+            j-=1
+        else:
+            half-=a[j]
+            break
+    rs.append((sa-m,m))
+#print(pq)
+#print(rs)
+ans = 10**9
+for i in range(n-1):
+    p,q = pq[i]
+    r,s = rs[n-2-i]
+    t = max(p,q,r,s)-min(p,q,r,s)
+    if t<ans:
+        ans = t
+print(ans)

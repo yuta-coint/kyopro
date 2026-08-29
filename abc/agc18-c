@@ -1,0 +1,38 @@
+from heapq import heapify,heappush,heappop
+x,y,z = map(int,input().split())
+coin = []
+ansr = 0
+for i in range(x+y+z):
+    p,q,r = map(int,input().split())
+    coin.append([r-q,q-p,r-p])
+    ansr+=r
+coin.sort()
+au = 0
+q = []
+ansu = []
+heapify(q)
+for i in range(y):
+    heappush(q,coin[i][1])
+    au-=coin[i][0]
+ansu.append(au)
+for i in range(x):
+    heappush(q,coin[y+i][1])
+    au-=coin[y+i][0]
+    au -= heappop(q)
+    ansu.append(au)
+ad = 0
+r = []
+heapify(r)
+ansd = []
+for i in range(z):
+    heappush(r,coin[x+y+z-1-i][2])
+ansd.append(0)
+for i in range(x):
+    heappush(r,coin[x+y-1-i][2])
+    ad-= heappop(r)
+    ansd.append(ad)
+ans =ansu[0]+ansd[x]
+for i in range(x+1):
+    if ans<ansu[i]+ansd[x-i]:
+        ans = ansu[i]+ansd[x-i]
+print(ans+ansr)

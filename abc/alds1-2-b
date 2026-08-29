@@ -1,0 +1,16 @@
+#選択ソート
+n= int(input())
+A = list(map(int, input().split()))
+kaisu = 0
+for i in range(n):
+   mini = i
+   for j in range(i,n):
+       if A[j] < A[mini]:
+           mini = j
+   t = A[i]
+   A[i] = A[mini]
+   A[mini] = t
+   if i != mini:
+       kaisu = kaisu+1
+print(*A)
+print(kaisu)

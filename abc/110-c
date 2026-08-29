@@ -1,0 +1,16 @@
+s = list(input())
+t = list(input())
+l = len(s)
+st = []
+for i in range(l):
+    st.append((s[i],t[i]))
+st_set = set(st)
+l2=len(st_set)
+s_set = set(s)
+t_set = set(t)
+l3=len(s_set)
+l4=len(t_set)
+if l2==l3 and l2==l4:
+    print("Yes")
+else:
+    print("No")

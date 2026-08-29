@@ -1,0 +1,12 @@
+n = int(input())
+def blu(i,pre):
+    if i < n:
+        p = pre+"a"
+        blu(i+1,p)
+        q = pre+"b"
+        blu(i+1,q)
+        r = pre+"c"
+        blu(i+1,r)
+    else:
+        print(pre)
+blu(0,"")

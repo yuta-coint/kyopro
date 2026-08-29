@@ -1,0 +1,40 @@
+r, c =map(int,input().split())
+sy,sx=map(int,input().split())
+gy,gx=map(int,input().split())
+sy -= 1
+sx -= 1
+gy -= 1
+gx -= 1
+labyrinth = []
+for i in range(r):
+    gyou = list(input())
+    labyrinth.append(gyou)
+new = []
+old = []
+t = [sy,sx,0]
+new.append(t)
+old.append(t)
+flag=0
+counter = 0
+while flag ==0:
+    point = new[0]
+    py = point[0]
+    px = point[1]
+    counter = point[2]+1
+    if labyrinth[py-1][px]=="." and [py-1,px] not in old:
+        new.append([py-1,px,counter])
+        old.append([py-1,px])
+    if labyrinth[py][px-1]=="." and [py,px-1] not in old:
+        new.append([py,px-1,counter])
+        old.append([py,px-1])
+    if labyrinth[py][px+1]=="." and [py,px+1] not in old:
+        new.append([py,px+1,counter])
+        old.append([py,px+1])
+    if labyrinth[py+1][px]=="." and [py+1,px] not in old:
+        new.append([py+1,px,counter])
+        old.append([py+1,px])
+    new = new[1:]
+    if gy==py and gx == px:
+        ans = point[2]
+        flag = 1
+print(ans)

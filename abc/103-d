@@ -1,0 +1,14 @@
+n ,m= map(int,input().split())
+war = []
+for i in range(m):
+    a ,b= map(int,input().split())
+    war.append([a,b])
+war.sort(reverse=True)
+ans = 0
+rem = n
+for i in range(m):
+    wari = war[i]
+    if rem >= wari[1]:
+        rem = wari[0]
+        ans +=1
+print(ans)

@@ -1,0 +1,37 @@
+s = list(input())
+n = len(s)
+a = []
+MOD = 10**9+7
+for i in range(n):
+    if s[i]=="c":
+        a.append(0)
+    elif s[i]=="h":
+        a.append(1)
+    elif s[i]=="o":
+        a.append(2)
+    elif s[i]=="k":
+        a.append(3)
+    elif s[i]=="u":
+        a.append(4)
+    elif s[i]=="d":
+        a.append(5)
+    elif s[i]=="a":
+        a.append(6)
+    elif s[i]=="i":
+        a.append(7)
+    else:
+        a.append(8)
+pattern = [[0 for i in range(n)] for i in range(9)]
+pattern[8] = [1 for i in range(n)]
+for i in range(8):
+    for j in range(n):
+        if a[j]==i:
+            pattern[i][j] = pattern[i-1][j-1]+pattern[i][j-1]
+            pattern[i][j] %= MOD
+        else:
+            pattern[i][j] = pattern[i][j-1]
+            pattern[i][j] %= MOD
+
+
+ans = pattern[7][n-1]
+print(ans)

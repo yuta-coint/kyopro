@@ -1,0 +1,15 @@
+n = int(input())
+benefit = []
+aoki = 0
+for i in range(n):
+    a, b = map(int,input().split())
+    c = 2*a + b
+    aoki = aoki + a
+    benefit.append(c)
+benefit.sort(reverse=True)
+ans = 0
+takahashi = 0
+while(takahashi<=aoki):
+    takahashi = takahashi + benefit[ans]
+    ans = ans +1
+print(ans)

@@ -1,0 +1,10 @@
+n = int(input())
+p=1
+q=2
+r=1
+for i in range(n):
+    p=p*10%1000000007
+    q=q*9%1000000007
+    r=r*8%1000000007
+ans = (p-q+r)%1000000007
+print(ans)

@@ -1,0 +1,38 @@
+mod = 10**9+7
+def bigpower(base,pow):
+    num = 1
+    devide = []
+    while pow>0:
+        if pow%2==0:
+            devide.append(2)
+            pow = pow//2
+        else:
+            devide.append(1)
+            pow -= 1
+    devide.reverse()
+    lend = len(devide)
+    db = 0
+    for i in range(lend):
+        if devide[i]==2:
+            num = num*num%mod
+        else:
+            num = num*base%mod
+    return(num)
+n = int(input())
+a = list(map(int,input().split()))
+c = [0 for i in range(n//2+1)]
+t=(n+1)%2
+for i in range(n):
+    if a[i]%2==t:
+        c[(a[i]+1)//2]+=1
+    else:
+        print(0)
+        break
+else:
+    for i in range(1,n//2+1):
+        if c[i]!=2:
+            print(0)
+            break
+    else:
+        n//=2
+        print(bigpower(2,n))

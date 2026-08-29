@@ -1,0 +1,23 @@
+N,e = map(int,input().split())
+G = [[]for i in range(N)]
+rG = [[]for i in range(N)]
+for i in range(e):
+    s,t = map(int,input().split())
+    G[s].append(t)
+    rG[t].append(s)
+inedge = [len(rG[i]) for i in range(N)]
+L = []
+import queue
+S = queue.Queue()
+for i in range(N):
+    if inedge[i]==0:
+        S.put(i)
+while not S.empty():
+    n = S.get()
+    L.append(n)
+    for i in G[n]:
+        inedge[i] -= 1
+        if inedge[i] == 0:
+            S.put(i)
+for i in L:
+    print(i)

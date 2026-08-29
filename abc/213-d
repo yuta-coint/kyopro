@@ -1,0 +1,20 @@
+import sys
+sys.setrecursionlimit(300000)
+N =  int(input())
+G=[[] for i in range(N+1)]
+for i in range(N-1):
+    a,b=map(int,input().split())
+    G[a].append(b)
+    G[b].append(a)
+ans = []
+for i in range(N+1):G[i].sort()
+check=[0 for i in range(N+1)]
+def dfs(v):
+    check[v]=1
+    ans.append(v)
+    for i in G[v]:
+        if check[i]==0:
+            dfs(i)
+            ans.append(v)
+dfs(1)
+print(*ans)

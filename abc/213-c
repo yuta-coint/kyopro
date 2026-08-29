@@ -1,0 +1,16 @@
+h,w,n = map(int,input().split())
+a = []
+b = []
+for i in range(n):
+    an,bn = map(int,input().split())
+    a.append(an)
+    b.append(bn)
+a2 = sorted(set(a))
+b2 = sorted(set(b))
+da = {v:i for i, v in enumerate(a2)}
+db = {v:i for i, v in enumerate(b2)}
+#aの要素に対して「vに対してd[v]を返す」
+ansa = list(map(lambda v:da[v],a))
+ansb = list(map(lambda v:db[v],b))
+for i in range(n):
+    print(ansa[i],ansb[i])

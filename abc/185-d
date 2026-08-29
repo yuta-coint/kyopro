@@ -1,0 +1,21 @@
+import math
+n ,m= map(int,input().split())
+a= list(map(int,input().split()))
+a.append(0)
+a.append(n+1)
+a.sort()
+length = []
+for i in range(m+1):
+    b = a[i+1]-a[i]-1
+    length.append(b)
+nonzero = []
+for i in length:
+    if i > 0:
+        nonzero.append(i)
+if nonzero!=[]:
+    k = min(nonzero)
+ans = 0
+for i in nonzero:
+    time=math.ceil(i/k)
+    ans += time
+print(ans)

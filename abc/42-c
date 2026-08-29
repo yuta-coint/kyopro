@@ -1,0 +1,30 @@
+n,k = map(int,input().split())
+d = list(map(int,input().split()))
+c = [1 for i in range(10)]
+for i in d:
+    c[i]=0
+g = [[] for i in range(10000)]
+for j in range(10000):
+    t=j
+    while t>0:
+        g[j].append(t%10)
+        t//=10
+flag = 0
+ans = n-1
+while flag ==0 and ans <= 9998:
+    ans+=1
+    for j in g[ans]:
+        if c[j]==0:
+            break
+    else:
+        flag = 1
+d1 = []
+for i in range(10):
+    if c[i]==1:
+        d1.append(i)
+if flag == 0:
+    if d1[0]==0:
+        ans = d1[1]*10000
+    else:
+        ans = d1[0]*11111
+print(ans)

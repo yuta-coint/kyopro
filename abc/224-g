@@ -1,0 +1,33 @@
+n,s,t,a,b = map(int,input().split())
+ma = n
+mi = 1
+K = -1
+while (ma-mi)>1:
+     k = (ma+mi)//2
+     kx = k*(k-1)*a//2+b*n
+     if kx<k*(k-1)*a:
+         ma = k
+     elif kx>k*k*a:
+         mi = k
+     else:
+         K = k
+         break
+#print(K)
+if K == -1:
+    k = ma
+    kx = k*(k-1)*a//2+b*n
+    if kx>=k*k*a:
+        K = ma
+    else:
+        K = mi
+if K>t:
+    K = t
+x=((K-1)*a*K+b*n*2)*(10**6)//(2*K)
+if x >10**12:
+    x//=10**6
+else:
+    x/=10**6
+if s<=t:
+    print(min((t-s)*a,x))
+else:
+    print(x)

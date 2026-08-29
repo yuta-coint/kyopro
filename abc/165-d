@@ -1,0 +1,6 @@
+a, b, n =map(int,input().split())
+if b-1>n:
+    ans=(a*n)//b
+else:
+    ans=(a*(b-1))//b
+print(ans)

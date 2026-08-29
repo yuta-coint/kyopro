@@ -1,0 +1,34 @@
+import math
+x ,y, r= map(float,input().split())
+x = x-math.floor(x)
+y = y-math.floor(y)
+fix = 10000
+x = int(x*fix)
+y = int(y*fix)
+r = int(r*fix)
+ix = fix-x
+iy = fix-y
+def point(p, q):
+    t = (r+q)//fix+1
+    s = (r+p)//fix
+    ip = fix-p
+    iq = -q+(t*fix)
+    rr = r*r
+    num = 0
+    for i in range(s):
+        qq = rr-(ip*ip)
+        while qq <= iq*abs(iq):
+            iq-=fix
+            t-=1
+        if t>=0:
+            num += t
+        ip+=fix
+    return(num)
+
+ans = 0
+ans +=point(x,y)
+ans +=point(x,iy)
+ans +=point(ix,y)
+ans +=point(ix,iy)
+print(ans)
+##切り捨てによる桁落ちが原因か。10*4倍して数字を扱うことで何とかなるのか。

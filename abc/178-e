@@ -1,0 +1,10 @@
+n = int(input())
+p = []
+m = []
+for i in range(n):
+    x,y = map(int,input().split())
+    p.append(x+y)
+    m.append(x-y)
+mp = max(p)-min(p)
+mq = max(m)-min(m)
+print(max(mp,mq))

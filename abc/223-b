@@ -1,0 +1,8 @@
+s = input()
+sall = [s]
+for i in range(len(s)):
+    s = s[1:]+s[0]
+    sall.append(s)
+sall.sort()
+print(sall[0])
+print(sall[-1])

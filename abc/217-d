@@ -1,0 +1,11 @@
+import array
+l,q = map(int,input().split())
+coint = array.array('i',[0,l])
+import bisect
+for i in range(q):
+    c,x = map(int,input().split())
+    if c ==1:
+        bisect.insort(cutpoint,x)
+    else:
+        ins = bisect.bisect_right(cutpoint,x)
+        print(cutpoint[ins]-cutpoint[ins-1])

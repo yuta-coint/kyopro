@@ -1,0 +1,10 @@
+n,t = map(int,input().split())
+timeline = [0 for i in range(t+1)]
+for i in range(n):
+    l,r = map(int,input().split())
+    timeline[l]+=1
+    timeline[r]-=1
+#print(timeline)
+for i in range(t):
+    timeline[i+1]+=timeline[i]
+print(max(timeline))

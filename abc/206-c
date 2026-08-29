@@ -1,0 +1,15 @@
+n = int(input())
+a = list(map(int, input().split()))
+stock = 1
+point = n*(n-1)//2
+a.sort()
+for i in range(n-1):
+    if a[i]==a[i+1]:
+        stock += 1
+    else:
+        damage = stock*(stock-1)//2
+        point -= damage
+        stock = 1
+damage = stock*(stock-1)//2
+point -= damage
+print(point)

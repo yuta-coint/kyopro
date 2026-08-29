@@ -1,0 +1,7 @@
+n,k = map(int,input().split())
+a = list(map(int,input().split()))
+t = [min(i+1,k,n-i,n-k+1) for i in range(n)]
+ans = 0
+for i in range(n):
+    ans += a[i]*t[i]
+print(ans)

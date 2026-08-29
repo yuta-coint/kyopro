@@ -1,0 +1,12 @@
+n ,m= map(int,input().split())
+if m < 2*n or m > 4*n:
+    a = -1
+    o = -1
+    b = -1
+else:
+    remain = m-(2*n)
+    b = remain//2
+    o =  remain%2
+    a = n-b-o
+print(a, o, b)
+     

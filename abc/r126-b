@@ -1,0 +1,19 @@
+import bisect
+n,m = map(int,input().split())
+LIS = [-1]
+G = []
+for i in range(m):
+    a,b = map(int,input().split())
+    G.append([a,-b])
+G.sort()
+print(G)
+last = None
+for i in range(n):
+    a = G[i][0]
+    b = -G[i][1]
+    if b > LIS[-1]:
+        LIS.append(b)
+    else:
+        LIS[bisect.bisect_left(LIS, b)] = b
+    last = a
+print(len(LIS)-1)

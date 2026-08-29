@@ -1,0 +1,19 @@
+import heapq
+import queue
+Q = int(input())
+q = []
+stock = queue.Queue()
+heapq.heapify(q)
+for i in range(Q):
+    query = list(map(int,input().split()))
+    if query[0] == 1:
+        stock.put(query[1])
+    elif query[0] == 2:
+        if len(q)>0:
+            print(heapq.heappop(q))
+        else:
+            print(stock.get())
+    else:
+        while not stock.empty():
+            a = stock.get()
+            heapq.heappush(q,a)

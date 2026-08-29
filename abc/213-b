@@ -1,0 +1,7 @@
+n = int(input())
+a = list(map(int, input().split()))
+b = copy.copy(a)
+a.sort
+score = a[n-2]
+bubi = a.index(score)
+print(bubi+1)

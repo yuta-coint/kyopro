@@ -1,0 +1,30 @@
+s = list(input())
+digit = [0 for i in range(10)]
+ans = "No"
+
+if len(s)==1 and s[0]=="8":
+    ans="Yes"
+elif len(s)==2:
+    p = int(s[0])*10+int(s[1])
+    q = int(s[1])*10+int(s[0])
+    if p%8==0 or q%8==0:
+        ans = "Yes"
+else:
+    for i in s:
+        digit[int(i)] += 1
+    for i in range(125):
+        j = 8*i
+        temp = [0 for i in range(10)]
+        a = j//100
+        b = (j%100)//10
+        c = j%10
+        temp[a] += 1
+        temp[b] += 1
+        temp[c] += 1
+        flag = 0
+        for i in range(10):
+            if digit[i]<temp[i]:
+                flag = 1
+        if flag == 0:
+            ans = "Yes"
+print(ans)

@@ -1,0 +1,35 @@
+n,s = map(int,input().split())
+a = list(map(int,input().split()))
+window = 0
+size = 0
+ar = 0
+al = 0
+ans = n+1
+flag = 0
+while ar < n:
+    if window >= s:
+        if size < ans and size>0:
+            ans = size
+            flag = 1
+        window -= a[al]
+        al += 1
+        size -=1
+    else:
+        window += a[ar]
+        ar += 1
+        size += 1
+ar = n
+#print(ans)
+while al < n:
+    if window >= s:
+        if size < ans and size>0:
+            ans = size
+            flag = 1
+        window -= a[al]
+        al += 1
+        size -=1
+    else:
+        break
+if flag == 0:
+    ans = 0
+print(ans)

@@ -1,0 +1,49 @@
+import sys
+sys.setrecursionlimit(300000)
+import copy
+N =  int(input())
+G=[[] for i in range(N+1)]
+for i in range(N-1):
+    a,b=map(int,input().split())
+    G[a].append(b)
+    G[b].append(a)
+for i in range(N+1):G[i].sort()
+check=[0 for i in range(N+1)]
+cnt=[0 for i in range(N+1)]
+ser = []
+def dfs(v):
+    ser.append(v)
+    check[v]=1
+    cnt[v]=1
+    for i in G[v]:
+        if check[i]==0:
+            if i == N:
+                global ser2
+                ser2 = copy.copy(ser)#1からNまでの直結経路
+            dfs(i)
+            if i!=N:
+                cnt[v]+=cnt[i]
+    ser.pop()
+dfs(1)
+#print(cnt)
+#print(ser2)
+ser2.append(N)
+t = len(ser2)
+fennec = 0
+snuke = 0
+norma = N//2+1
+if t%2==0:
+    m = t//2
+else:
+    m = t//2+1
+if t>=4:
+    fennec = cnt[1]-cnt[ser2[m]]
+else:
+    fennec = cnt[1]
+
+#print(norma)
+#print(fennec)
+if fennec >= norma:
+    print("Fennec")
+else:
+    print("Snuke")

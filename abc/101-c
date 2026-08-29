@@ -1,0 +1,6 @@
+n,k = map(int,input().split())
+a = list(map(int,input().split()))
+m = min(a)
+mn = a.count(m)
+ans = (n-mn-1)//(k-1)+1
+print(ans)

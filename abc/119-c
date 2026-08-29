@@ -1,0 +1,23 @@
+n,a,b,c = map(int,input().split())
+l = [int(input()) for i in range(n)]
+ans = 10**9
+for i in range(1<<2*n):
+    t = j
+    ban = [0,0,0,0]
+    for j in range(n):
+        if t%4==0:
+            ban[0]+=l[j]
+            ban[3]+=1
+        elif t%4==1:
+            ban[1]+=l[j]
+            ban[3]+=1
+        elif t%4==2:
+            ban[2]+=l[j]
+            ban[3]+=1
+        t//=4
+    if ban[0]==0 or ban[1]==0 or ban[2]==0:
+        continue
+    cost = abs(ban[0]-a)+abs(ban[1]-b)+abs(ban[2]-c)+10*(ban[3]-3)
+    if cost<ans:
+        ans = cost
+print(n)

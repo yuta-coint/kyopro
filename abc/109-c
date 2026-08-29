@@ -1,0 +1,8 @@
+import math
+n,x = map(int,input().split())
+a = list(map(int,input().split()))
+ans = abs(a[0]-x)
+for i in range(1,n):
+    t = abs(a[i]-x)
+    ans = math.gcd(ans,t)
+print(ans)

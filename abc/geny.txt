@@ -1,0 +1,50 @@
+import sys
+import requests
+def output(A):
+    A_info = requests.get(url_user,params = {"user_id":A})
+    name = A_info.json()["result"]["name"]
+    follow_count = len(A_info.json()["result"]["follows"])
+    print("name: "+name+", number_of_follows: "+str(follow_count))
+url_user = "http://localhost:3000/api/sns/user"
+url_post = "http://localhost:3000/api/sns/posts"
+def main(argv):
+    N, M, L = argv
+    r = requests.get(url_user,params = {"user_id":N})
+    if r.status_code == 404:
+        print("No user.")
+        return 0
+    param_for_post = {
+        "since":M,
+        "until":L
+    }
+    posts = requests.get(url_post,params = param_for_post)
+    if posts.status_code == 404:
+        print("No posts.")
+        return 0
+    post_exist = False
+    ans_dict = {}
+    for p in posts.json()["result"]:
+        if p['user_id'] == N:
+            post_exist = True
+            for q in p["liked_by"]:
+                if q in ans_dict:
+                    ans_dict[q] += 1
+                else:
+                    ans_dict[q] = 1
+    if not post_exist:
+        print("No posts.")
+        return 0
+    ans = []
+    for q in ans_dict:
+        ans.append((-ans_dict[q],q))
+    ans.sort(reverse = True)
+    if len(ans) == 0:
+        print("No liked.")
+        return 0
+    for i in range(1,4):
+        if len(ans) >= 1:
+            output(ans.pop()[1])
+
+
+if __name__ == '__main__':
+    main(sys.argv[1:])

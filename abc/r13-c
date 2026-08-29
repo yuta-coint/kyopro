@@ -1,0 +1,24 @@
+import sys
+import copy
+input = sys.stdin.readline
+n = int(input())
+ans = 0
+for i in range(n):
+    XYZ = list(map(int,input().split()))
+    m = int(input())
+    a = [0,0,0]
+    b = copy.copy(XYZ)
+    for j in range(m):
+        xyz = list(map(int,input().split()))
+        for k in range(3):
+            if xyz[k]>a[k]:
+                a[k] = xyz[k]
+            if xyz[k]<b[k]:
+                b[k] = xyz[k]
+    for k in range(3):
+        ans ^= (XYZ[k]-a[k]-1)^(b[k])
+#print(ans)
+if ans!=0:
+    print("WIN")
+else:
+    print("LOSE")

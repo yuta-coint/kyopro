@@ -1,0 +1,23 @@
+n = int(input())
+red = [[0 for i in range(2*n)] for j in range(2*n)]
+blue = [[0 for i in range(2*n)] for j in range(2*n)]
+for i in range(n):
+    a,b = map(int,input().split())
+    red[a][b]+=1
+for i in range(n):
+    a,b = map(int,input().split())
+    blue[a][b]+=1
+point = [0 for i in range(200)]
+ans = 0
+for i in range(2*n):
+    #print(point[:2*n])
+    for j in range(1,2*n):
+        if blue[i][j]>0:
+            for k in reversed(range(j)):
+                if point[k]>0:
+                    point[k]-=1
+                    ans+=1
+                    break
+    for j in range(2*n):
+        point[j]+=red[i][j]
+print(ans)

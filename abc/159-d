@@ -1,0 +1,16 @@
+n =int(input())
+a = list(map(int,input().split()))
+cnt = [0 for i in range(n+1)]
+b = [0 for i in range(n+1)]
+c = [0 for i in range(n+1)]
+for i in range(n):
+    cnt[a[i]]+=1
+for i in range(n+1):
+    b[i] = cnt[i]*(cnt[i]-1)//2
+    if cnt[i]>0:
+        c[i] = (cnt[i]-2)*(cnt[i]-1)//2
+ans = []
+s = sum(b)
+for i in range(n):
+    x = s - b[a[i]]+c[a[i]]
+    print(x)

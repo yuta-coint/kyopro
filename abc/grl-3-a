@@ -1,0 +1,120 @@
+import sys
+sys.setrecursionlimit(300000)
+def dfs(v):
+    global mother
+    global lowlink
+    global check
+    global counter
+    global cnt
+    global ord
+    if v == 0:
+        cnt = 0
+    ord[v]=counter
+    lowlink[v]=ord[v]
+    counter+=1
+    check[v]=1
+    for i in G[v]:
+        if check[i]==0:
+            mother[i] = v
+            dfs(i)
+            lowlink[v] = min(lowlink[v],lowlink[i])
+            if v == 0:
+                 cnt += 1
+        elif i != mother[v]:
+            lowlink[v] = min(lowlink[v],ord[i])
+
+#mother = [None for i in range(81)]
+#lowlink = [None for i in range(81)]
+#check=[0 for i in range(81)]
+counter = 0
+cnt = 0
+#橋じゃないものと4以外を全部列挙する
+def is_not_art(N):
+    global mother
+    global lowlink
+    global check
+    global counter
+    global ord
+    ord = [None for i in range(N)]
+    mother = [None for i in range(N)]
+    lowlink = [None for i in range(N)]
+    check=[0 for i in range(N)]
+    counter = 0
+    cnt = 0
+    art = []
+    dfs(0)
+    #print(ord)
+    #print(lowlink)
+    #print(mother)
+    #for i in range(E):G_pair[i].sort()
+    #G_pair.sort()
+    for i in range(N):
+        if ord[mother[i]]<=lowlink[i] and mother[i]!=0:
+            art.append(mother[i])
+    if cnt >1:
+        art.append(0)
+    articulation = set(art)
+    r = []
+    for i in range(N):
+        if not (i in articulation):
+            r.append((i+4)%81)
+    return r
+####################################################
+import sys
+sys.setrecursionlimit(300000)
+import copy
+N,E =  map(int,input().split())
+G=[[] for i in range(N)]
+#G_pair = []
+for i in range(E):
+    a,b=map(int,input().split())
+    G[a].append(b)
+    G[b].append(a)
+    #G_pair.append([a,b])
+for i in range(N):G[i].sort()
+ord = [None for i in range(N)]
+check=[0 for i in range(N)]
+mother = [None for i in range(N)]
+lowlink = [None for i in range(N)]
+counter = 0
+ser = []
+def dfs(v):
+    global counter
+    global cnt
+    if v == 0:
+        cnt = 0
+    ord[v]=counter
+    lowlink[v]=ord[v]
+    counter+=1
+    check[v]=1
+    for i in G[v]:
+        if check[i]==0:
+            mother[i] = v
+            dfs(i)
+            lowlink[v] = min(lowlink[v],lowlink[i])
+            if v == 0:
+                 cnt += 1
+        elif i != mother[v]:
+            lowlink[v] = min(lowlink[v],ord[i])
+dfs(0)
+#print(ord)
+#print(lowlink)
+#print(mother)
+#for i in range(E):G_pair[i].sort()
+#G_pair.sort()
+art = []
+#for b in G_pair:
+#    if ord[b[0]]<lowlink[b[1]] and b[0]!=0:
+#        art.append(b[0])
+#    if ord[b[1]]<lowlink[b[0]] and b[1]!=0:
+#        art.append(b[1])
+for i in range(1,N):
+     if ord[mother[i]]<=lowlink[i] and mother[i]!=0:
+         art.append(mother[i])
+if cnt >1:
+    art.append(0)
+articulation = set(art)
+ans = list(articulation)
+ans.sort()
+for i in ans:
+    print(i)

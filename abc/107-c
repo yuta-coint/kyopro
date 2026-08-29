@@ -1,0 +1,14 @@
+n,k  =map(int,input().split())
+x = list(map(int,input().split()))
+x.sort()
+ans = abs(x[n-1])+abs(x[0])+min(abs(x[n-1]),abs(x[0]))
+for i in range(n-k+1):
+    p = x[i]
+    q = x[i+k-1]
+    if p*q>=0:
+        r = max(abs(p),abs(q))
+    else:
+        r = abs(p)+abs(q)+min(abs(p),abs(q))
+    if r < ans:
+        ans = r
+print(ans)

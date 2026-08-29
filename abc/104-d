@@ -1,0 +1,55 @@
+s = list(input())
+l = len(s)
+mod = 10**9 + 7
+countc = [0 for i in range(l+1)]
+countbc = [0 for i in range(l)]
+countabc = [0 for i in range(l-1)]
+ques = 0
+cc = 0
+patc = 1
+patq = 1
+for i in range(l):
+    j = l-1-i
+    if s[j]=="C":
+        cc += 1
+    elif s[j]=="?":
+        ques += 1
+        patc *= 3
+        patc %= mod
+        if ques > 1:
+            patq *= 3
+            patq %= mod
+    numc = (cc*patc)+(ques*patq)
+    numc %= mod
+    countc[j] = numc
+
+for i in range(l-1):
+    j = l-2-i
+    if s[j]=="B":
+        numb = countc[j+1]+countbc[j+1]
+    elif s[j]=="?":
+        numb = countbc[j+1]
+        numb *= 3
+        numb += countc[j+1]
+    else:
+        numb = countbc[j+1]
+    numb %= mod
+    countbc[j] = numb
+
+for i in range(l-2):
+    j = l-3-i
+    if s[j]=="A":
+        numa = countbc[j+1]+countabc[j+1]
+    elif s[j]=="?":
+        numa = countabc[j+1]
+        numa *= 3
+        numa += countbc[j+1]
+    else:
+        numa = countabc[j+1]
+    numa %= mod
+    countabc[j] = numa
+ans = countabc[0]
+#print(countc)
+#print(countbc)
+#print(countabc)
+print(ans)

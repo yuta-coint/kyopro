@@ -1,0 +1,28 @@
+n = int(input())
+f = []
+fb = []
+p = []
+for i in range(n):
+    fn = list(map(int,input().split()))
+    b = 0
+    for j in range(10):
+        b += (2**j)*fn[j]
+    f.append(fn)
+    fb.append(b)
+for i in range(n):
+    pn = list(map(int,input().split()))
+    p.append(pn)
+ans = -10**9
+for i in range(1,1024):
+    bene = 0
+    for j in range(n):
+        t = i & fb[j]
+        cnt = 0
+        for k in range(10):
+            if t%2==1:
+                cnt+=1
+            t//=2
+        bene+=p[j][cnt]
+    if bene>ans:
+        ans = bene
+print(ans)

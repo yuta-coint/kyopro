@@ -1,0 +1,33 @@
+X,Y,a,b,c = map(int,input().split())
+flag = 0
+def file(p,q,r,x,y):
+    k = (p-1)//y +1
+    kq = (q-1)//y +1
+    kr = (r-1)//y +1
+    if k>=x:
+        return(0)
+    elif k+kq+kr<=x:
+        return(1)
+    else:
+        jq = (q-1)//(x-k) +1
+        jr = (r-1)//(x-k) +1
+        if jq+jr<=y:
+            return(1)
+        else:
+            return(0)
+if file(a,b,c,X,Y)==1:
+    flag = 1
+if file(b,a,c,X,Y)==1:
+    flag = 1
+if file(c,b,a,X,Y)==1:
+    flag = 1
+if file(a,b,c,Y,X)==1:
+    flag = 1
+if file(b,a,c,Y,X)==1:
+    flag = 1
+if file(c,b,a,Y,X)==1:
+    flag = 1
+if flag == 1:
+    print(Yes)
+else:
+    print(No)

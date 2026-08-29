@@ -1,0 +1,26 @@
+n = int(input())
+#point = []
+px = []
+py = []
+for i in range(n):
+    x,y = map(int,input().split())
+    #point.append([x,y])
+    px.append(x)
+    py.append(y)
+#point.sort()
+qx = sorted(set(px))
+qy = sorted(set(py))
+dx = {v:i for i, v in enumerate(qx)}
+dy = {v:i for i, v in enumerate(qy)}
+kx = list(map(lambda v:dx[v],px))
+ky = list(map(lambda v:dy[v],py))
+check = [[0 for i in range(n)] for i in range(n)]
+for i in range(n):
+    check[kx[i]][ky[i]] = 1
+ans = 0
+for i in range(n):
+    for j in range(i+1,n):
+        if check[kx[i]][ky[j]]*check[kx[j]][ky[i]] == 1 and kx[i]!=kx[j] and ky[i]!=ky[j]:
+            ans += 1
+ans //= 2
+print(ans)

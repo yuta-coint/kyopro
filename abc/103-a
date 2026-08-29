@@ -1,0 +1,4 @@
+a = list(map(int, input().split()))
+u = min(a)
+o = max(a)
+print(o-u)

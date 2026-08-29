@@ -1,0 +1,14 @@
+s=int(input())
+strong = 1
+a = s//1000
+if s%1111 == 0:
+    strong=0
+if a<=6:
+    if (s-123)%1111==0:
+        strong = 0
+if a==7890 or a==8901 or a==9012:
+    strong =0
+if strong ==0:
+    print("Weak")
+else:
+    print("Strong")

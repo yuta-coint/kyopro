@@ -1,0 +1,38 @@
+n,d,a = map(int,input().split())
+monster = []
+for i in range(n):
+    x,h = map(int,input().split())
+    h = (h-1)//a + 1
+    monster.append([x,h])
+monster.sort()
+monster.append([x+1,0])
+#print(monster)
+BIT = [0 for i in range(n+1)]#総被ダメ
+def add(i,x):
+    while i<=n:
+        BIT[i]+=x
+        i += (i&-i)
+
+def getSum(x):
+    i = x
+    gs = 0
+    while i>0:
+        gs+=BIT[i]
+        i -= (i&-i)
+    return gs
+
+def raq(x1,x2,d):
+    add(x1,d)
+    add(x2+1,-d)
+ans = 0
+bomr = 0
+for i in range(n):
+    while bomr<=n-1 and monster[bomr][0]<=2*d+monster[i][0]:
+        bomr += 1
+    hp = monster[i][1]-getSum(i+1)
+    #print(bomr)
+    #print(hp)
+    if hp>0:
+        ans += hp
+        raq(i+1,bomr,hp)
+print(ans)

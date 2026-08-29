@@ -1,0 +1,39 @@
+n,q = map(int,input().split())
+tree = [i for i in range(n)]
+rank = [0 for i in range(n)]
+weight = [0 for i in range(n)]
+def find(i):
+    #global weight
+    if tree[i] == i:
+        return i
+    else:
+        findi = find(tree[i])
+        y = findi
+        return y
+
+def union(x, y, w):
+    rx = self.find(x)
+    ry = self.find(y)
+    # xの木の高さ < yの木の高さ
+    if self.rank[rx] < self.rank[ry]:
+    self.par[rx] = ry
+        self.weight[rx] = w - self.weight[x] + self.weight[y]
+    # xの木の高さ ≧ yの木の高さ
+    else:
+        self.par[ry] = rx
+        self.weight[ry] = -w - self.weight[y] + self.weight[x]
+        # 木の高さが同じだった場合の処理
+        if self.rank[rx] == self.rank[ry]:
+            self.rank[rx] += 1
+
+for i in range(q):
+    query = list(map(int,input().split()))
+    if query[0] == 0:
+        union(query[1],query[2],query[3])
+    else:
+        q1,q2 = query[1],query[2]
+        if find(q1)==find(q2):
+            print(weight[q2]-weight[q1])
+        else:
+            print("?")
+    #print(weight)

@@ -1,0 +1,1 @@
+select * from prefectures where area < 1000,000;

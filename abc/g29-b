@@ -1,0 +1,28 @@
+import bisect
+n = int(input())
+a = list(map(int,input().split()))
+a.sort()
+a.append(10**9+1)
+sum = 1
+ans = 0
+while a[-1]>sum:
+    sum *= 2
+check = [0 for i in range(n)]
+for i in reversed(range(n)):
+    if check[i] > 0:
+        continue
+    check[i]=1
+    while sum > 2*a[i]:
+        sum//=2
+    p = bisect.bisect_left(a,sum-a[i])
+    #print(p)
+    if a[p]==sum - a[i]:
+        while a[p]==sum - a[i]:
+            if check[p] == 0:
+                check[p] = 1
+                ans += 1
+                break
+            else:
+                p+=check[p]
+                check[p]+=1
+print(ans)

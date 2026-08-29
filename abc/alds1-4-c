@@ -1,0 +1,23 @@
+n = int(input())
+set = {}
+def insert(num):
+    set.add(num)
+def find():
+def edit(char):
+    if char=="A":
+        return(1)
+    elif char=="B":
+        return(2)
+    elif char=="C":
+        return(3)
+    elif char=="D":
+        return(4)
+for i in range(n)
+    func, codon = input().split
+    num = num+100*edit(codon[0])
+    num = num+10*edit(codon[1])
+    num = num+edit(codon[2])
+    if func == "insert":
+        insert(num)
+    else:
+        find(num)

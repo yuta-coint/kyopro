@@ -1,0 +1,8 @@
+def pcq(p,q):
+    com = 1
+    for i in range(q):
+        com *= p-i
+        com //= i+1
+    return(com)
+l = int(input())
+print(pcq(l-1,11))

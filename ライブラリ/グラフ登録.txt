@@ -1,0 +1,8 @@
+#各点に対して直接繋がっている点の集合を構成する
+G=[[] for i in range(N+1)]
+for i in range(N-1):
+  a,b=map(int,input().split())
+  G[a].append(b)
+  G[b].append(a)
+
+for i in range(N+1):G[i].sort()

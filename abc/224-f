@@ -1,0 +1,26 @@
+s = list(input())
+n = len(s)
+MOD = 998244353
+p = [0 for i in range(n)]
+pow2 = [1]
+pow10 = [1]
+num2 = 1
+num10 = 1
+for i in range(n):
+    num2*=2
+    num10*=10
+    num2%=MOD
+    num10%=MOD
+    pow2.append(num2)
+    pow10.append(num10)
+for i in reversed(range(n-1)):
+    a = (pow2[i]*pow10[n-2-i])%MOD
+    p[i] = (a+p[i+1])%MOD
+for i in reversed(range(n)):
+    p[i]+=(pow2[i]*pow10[n-1-i])%MOD
+    p[i]%=MOD
+ans = 0
+for i in range(n):
+    ans += (p[i]*int(s[i]))%MOD
+    ans%=MOD
+print(ans)

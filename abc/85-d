@@ -1,0 +1,21 @@
+n, h = map(int, input().split())
+maxa = 0
+allb = []
+for i in range(n):
+    a,b = map(int,input().split())
+    allb.append(b)
+    if a > maxa:
+        maxa = a
+allb.sort(reverse = True)
+allb.append(0)
+t = allb[0]
+ans = 0
+while t > maxa and h>0:
+    h-=t
+    ans+=1
+    t = allb[ans]
+if h>0:
+    ans += h//maxa
+    if h%maxa!=0:
+        ans +=1
+print(ans)

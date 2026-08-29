@@ -1,0 +1,26 @@
+#ax+by=gcd(a,b) の整数解 (x,y) ただし、絶対値の和を最小化
+def EEA(a,b):
+    if a == 0:
+        return(0,1)
+    elif b == 0:
+        return(1,0)
+    elif a>=b:
+        r = a//b
+        p,q = EEA(a%b,b)
+        return(p,q-r*p)
+    else:
+        r = b//a
+        p,q = EEA(a,b%a)
+        return(p-r*q,q)
+from math import gcd
+T = int(input())
+for i in range(T):
+    n,s,k = map(int,input().split())
+    g = gcd(n,k)
+    loop = n//g
+    if s%g==0:
+        x = (n-s)//g
+        p1,p2 = EEA(n,k)
+        print((p2*x)%loop)
+    else:
+        print(-1)

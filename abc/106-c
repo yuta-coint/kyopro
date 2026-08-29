@@ -1,0 +1,21 @@
+s=input()
+k=int(input())
+key=0
+hidari=0
+l=len(s)
+kosu=l
+s = int(s)
+t = [i for i in range(l)]
+for i in range(l):
+    t[i]=s//(10**(l-i-1))
+    s = s - t[i]*(10**(l-i-1))
+for i in range(l):
+    if t[i]>1:
+        hidari=t[i]
+        kosu=i
+        break
+if k<=kosu:
+    print(1)
+else:
+    print(hidari)
+#桁ばらし

@@ -1,0 +1,33 @@
+n, K= map(int,input().split())
+x = []
+y = []
+for i in range(n):
+    X,Y = map(int,input().split())
+    x.append(X)
+    y.append(Y)
+bx = sorted(set(x))
+by = sorted(set(y))
+dx = {v:i for i, v in enumerate(bx)}
+dy = {v:i for i, v in enumerate(by)}
+idx = {v:k for k,v in dx.items()}
+idy = {v:k for k,v in dy.items()}
+#aの要素に対して「vに対してd[v]を返す」
+zx = list(map(lambda v:dx[v],x))
+zy = list(map(lambda v:dy[v],y))
+minarea = 10**19
+#print(x)
+#print(y)
+for i in range(len(dx)):
+    for j in range(i+1,len(dx)):
+        for k in range(len(dy)):
+            for l in range(i+1,len(dy)):
+                point = 0
+                for p in range(n):
+                    if dx[x[p]]>=i and dx[x[p]]<=j and dy[y[p]]>=k and dy[y[p]]<=l:
+                        point+=1
+                if point >= K:
+                    area = (idx[j]-idx[i])*(idy[l]-idy[k])
+                    #print(i,j,k,l,area,point)
+                    if area < minarea:
+                        minarea = area
+print(minarea)

@@ -1,0 +1,13 @@
+n = int(input())
+a = list(map(int, input().split()))
+ans=[]
+ans.append(0)
+ans.append(abs(a[1]-a[0]))
+for i in range(2,n):
+    p = abs(a[i-2]-a[i])
+    q = abs(a[i-1]-a[i])
+    ra = ans[i-2]+p
+    rb = ans[i-1]+q
+    r = min(ra, rb)
+    ans.append(r)
+print(ans[n-1])

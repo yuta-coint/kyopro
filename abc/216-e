@@ -1,0 +1,26 @@
+n ,k= map(int,input().split())
+a= list(map(int,input().split()))
+a.sort(reverse=True)
+a.append(0)
+finish = 0
+fun = 0
+i = 0
+while finish<=k and i<n:
+    time = a[i]-a[i+1]
+    average = (a[i]+a[i+1]+1)/2
+    prefun = fun
+    fun += time*average*(i+1)
+    prefinish = finish
+    finish += time*(i+1)
+    i += 1
+finish = prefinish
+fun = prefun
+p = a[i-1]
+ticket = k-finish
+lo = min(ticket//i,p)
+la = ticket%i
+average = (2*p-lo+1)/2
+fun += lo*average*i
+fun += (p-lo)*la
+fun = int(fun)
+print(fun)

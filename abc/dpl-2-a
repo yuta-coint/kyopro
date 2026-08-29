@@ -1,0 +1,22 @@
+v,e = map(int,input().split())
+G = [[] for i in range(v)]
+rG = [[] for i in range(v)]
+INF = 10**9
+for i in range(e):
+    s,t,d = map(int,input().split())
+    G[s].append([t,d])
+    rG[t].append([s,d])
+ans = [[INF for j in range(v)] for i in range(2**v)]
+ans[0][0]=0
+for i in range(2**v):
+    for j in range(v):
+        if i&(2**j)!=0:
+            for x in rG[j]:
+                temp = ans[i-(2**j)][x[0]]+x[1]
+                if temp<ans[i][j]:
+                     ans[i][j]=temp
+#print(ans)
+if ans[2**v-1][0]==INF:
+    print(-1)
+else:
+    print(ans[2**v-1][0])

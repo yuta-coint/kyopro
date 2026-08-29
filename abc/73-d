@@ -1,0 +1,35 @@
+n,m,r = map(int,input().split())
+q = list(map(int,input().split()))
+INF = 10**9
+cost = [[INF for i in range(n)] for i in range(n)]
+for i in range(n):
+    cost[i][i]=0
+for i in range(m):
+    a,b,c = map(int,input().split())
+    cost[a-1][b-1]=c
+    cost[b-1][a-1]=c
+for k in range(n):
+    for i in range(n):
+        for j in range(n):
+            if cost[i][k]!=INF and cost[k][j]!=INF:
+                cost[i][j] = min(cost[i][j], cost[i][k] + cost[k][j])
+
+
+cost2 = [[0 for i in range(r)] for i in range(r)]
+for i in range(r):
+    for j in range(r):
+        cost2[i][j] = cost[q[i]-1][q[j]-1]
+#print(cost2)
+import itertools
+import math
+arr = [i for i in range(r)]
+ptn = list(itertools.permutations(arr))
+ans = INF
+for p in ptn:
+    temp = 0
+    for i in range(r-1):
+        temp += cost2[p[i]][p[i+1]]
+    if temp<ans:
+        #print(p)
+        ans = temp
+print(ans)

@@ -1,0 +1,33 @@
+n = int(input())
+s = list(input())
+an = [["S","W"],["W","W"],["S","S"],["W","S"]]
+me = [[1,0],[0,0],[1,1],[0,1]]
+odd = []
+u = 0
+for i in range(n):
+    if s[i]=="o":
+        odd.append(1)
+    else:
+        odd.append(0)
+for i in range(4):
+    ans = an[i]
+    memo = me[i]
+    for i in range(2,n):
+        if (memo[i-1]+memo[i-2]+odd[i-1])%2 == 0:
+            ans.append("W")
+            memo.append(0)
+        else:
+            ans.append("S")
+            memo.append(1)
+    flag = 0
+    if (memo[n-1]+memo[n-2]+memo[0]+odd[n-1])%2 == 1:
+        flag = 1
+    if (memo[n-1]+memo[0]+memo[1]+odd[0])%2 == 1:
+        flag = 1
+    if flag == 0:
+        u = 1
+        break
+if u == 0:
+    print(-1)
+else:
+    print(*ans, sep ="")

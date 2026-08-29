@@ -1,0 +1,5 @@
+import Decimal
+getcontext().prec = 16
+L = int(input())
+ans = L**3/27
+print(ans)

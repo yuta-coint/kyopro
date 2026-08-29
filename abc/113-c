@@ -1,0 +1,40 @@
+n,m = map(int,input().split())
+py = []
+pn = []
+for i in range(m):
+    p,y = map(int,input().split())
+    py.append([p,y])
+    pn.append(p)
+b = sorted(py)
+pn.sort()
+pn = set(pn)
+t = []
+k = 0
+for i in pn:
+    temp =[]
+    cnt = 0
+    while b[k][0] == i:
+        temp.append(b[k][1])
+        k += 1
+        if k == m:
+            break
+    t.append(temp)
+#print(b)
+#print(t)
+d = [None for i in range(len(set(pn)))]
+#print(pn)
+dictp = {v:i for i, v in enumerate(pn)}
+#print(dictp)
+for j in range(len(set(pn))):
+    d[j] = {v:i for v, i in enumerate(t[j])}
+    d[j] = {v:k for k,v in d[j].items()}
+#print(d)
+#print(py)
+#aの要素に対して「vに対してd[v]を返す」
+for i in py:
+    h = d[dictp[i[0]]]
+    #print(h)
+    ansy = h[i[1]]+1
+    ans = i[0]*(10**6)+ansy
+    ans = str(ans).zfill(12)
+    print(ans)

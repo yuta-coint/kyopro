@@ -1,0 +1,20 @@
+n = int(input())
+l = len(bin(n))-2
+boad = 0
+if l%2 == 0:
+    for i in range(l//2):
+         boad*=4
+         boad+=2
+    if n<boad:
+        print("Aoki")
+    else:
+        print("Takahashi")
+else:
+    boad = 1
+    for i in range(l//2):
+         boad*=4
+         boad+=2
+    if n<boad:
+        print("Takahashi")
+    else:
+        print("Aoki")

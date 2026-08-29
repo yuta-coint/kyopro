@@ -1,0 +1,29 @@
+v,e = map(int,input().split())
+graph = []
+tree = [i for i in range(v)]
+
+def find(i):
+    if tree[i] == i:
+        return i
+    else:
+        tree[i]= find(tree[i])
+        return find(tree[i])
+
+def union(a,b):
+    if tree[a] > tree[b]:
+        a,b = b,a
+    tree[find(b)] = find(a)
+maxc = 0
+for i in range(e):
+    s,t,w = map(int,input().split())
+    maxc += w
+    graph.append([w,s-1,t-1])
+graph.sort()
+ans = 0
+for i in range(e):
+    if find(graph[i][1])!=find(graph[i][2]):
+        union(graph[i][1],graph[i][2])
+        ans += graph[i][0]
+    elif graph[i][0]<0:
+        ans += graph[i][0]
+print(maxc-ans)

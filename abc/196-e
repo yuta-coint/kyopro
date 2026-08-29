@@ -1,0 +1,33 @@
+n = int(input())
+ma = float("inf")
+mi = -float("inf")
+depth = 0
+last = 0
+for i in range(n):
+    a,t = map(int,input().split())
+    if t == 1:
+        depth += a
+    elif t == 2:
+        if a-depth>mi:
+            mi = a-depth
+            last = a-depth
+        if a-depth>last:
+            last = a-depth
+    else:
+        if a-depth<ma:
+            ma = a-depth
+            last = a-depth
+        if a-depth<last:
+            last = a-depth
+if ma<mi:
+    ma = last
+    mi = last
+q = int(input())
+x = list(map(int,input().split()))
+for i in range(q):
+    if x[i]>ma:
+        print(ma+depth)
+    elif x[i]<mi:
+        print(mi+depth)
+    else:
+        print(x[i]+depth)

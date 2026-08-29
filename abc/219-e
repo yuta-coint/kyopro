@@ -1,0 +1,16 @@
+a = []
+for i in range(4):
+    b = list(map(int,input()split()))
+    a.append(b)
+for i in range(2**16):
+    c = [[0,0,0,0]for i in range(4)]
+    for j in range(16):
+        c.append((i >> j) & 1)
+    for j in range(3):
+        for k in range(4):
+            if c[j][k]*c[j+1][k] == 1:
+                union(4*k+j,4*k+1+j)
+            if c[k][j]*c[k][j+1] == 1:
+                union(4*j+k,4*j+4+k)
+    for j in range(4):
+        for k in range(4):

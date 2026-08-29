@@ -1,0 +1,21 @@
+MOD = 998244353
+n = int(input())
+a = list(map(int,input().split()))
+b = list(map(int,input().split()))
+ma = max(a)
+dp = [1]*(ma+1)
+dp[0]=1
+ab = []
+for i in range(n):
+    ab.append([a[i],b[i]])
+ab.sort()
+ans = 0
+for i in range(n):
+    if ab[i][0]>=ab[i][1]:
+        ans+=dp[ab[i][0]-ab[i][1]]
+        ans%=MOD
+    for j in reversed(range(ab[i][1],ma+1)):
+        dp[j]+=dp[j-ab[i][1]]
+        dp[j]%=MOD
+    #print(dp)
+print(ans)

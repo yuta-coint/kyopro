@@ -1,0 +1,29 @@
+from heapq import heappush, heappop
+v, e = map(int,input().split())
+length = [["INF" for i in range(v)] for j in range(v)]
+dist = [["INF" for i in range(v)] for j in range(v)]
+G = [[]for i in range(v)]
+for i in range(v):
+    length[i][i]=0
+for i in range(e):
+    a,b,c = map(int,input().split())
+    length[a][b] = c
+    length[b][a] = c
+for i in range(v):
+     for j in range(v):
+         for k in range(v):
+             if length[j][i]!="INF" and length[i][k]!="INF":
+                 if length[j][k] == "INF":
+                     length[j][k]=length[j][i]+length[i][k]
+                 elif length[j][k]>length[j][i]+length[i][k]:
+                     length[j][k]=length[j][i]+length[i][k]
+
+nega = 0
+for i in range(v):
+    if length[i][i]<0:
+        nega = 1
+if nega == 1:
+    print("NEGATIVE CYCLE")
+else:
+    for i in range(v):
+        print(*length[i])

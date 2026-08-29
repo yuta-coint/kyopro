@@ -1,0 +1,19 @@
+n = int(input())
+f = []
+r = []
+INF = 10**9
+for i in range(n):
+    fn,rn = map(int,input().split())
+    f.append(fn)
+    r.append(rn)
+pattern = [[0 for i in range(n)] for i in range(n)]
+for j in range(n-1):
+    for i in range(n-1-j):
+        m = INF
+        for k in range(j+1):
+            p = f[i]*r[i+k]*r[i+j+1]+pattern[i][i+k]+pattern[i+k+1][i+j+1]
+            if p<m:
+                m=p
+        pattern[i][i+j+1] = m
+#print(pattern)
+print(pattern[0][n-1])

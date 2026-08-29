@@ -1,0 +1,36 @@
+from itertools import product
+n = int(input())
+ans = 0
+for i in range(3,10):
+    tmp = [range(3)] * i
+    iterator = product(*tmp)
+    for m in iterator:
+        c = [0,0,0]
+        num = 0
+        for j in range(i):
+            c[m[j]] += 1
+            if m[j]==0:
+                num += 3*(10**j)
+            elif m[j]==1:
+                num += 5*(10**j)
+            else:
+                num += 7*(10**j)
+        if all([c[0]>0, c[1]>0, c[2]>0, num<=n]):
+            ans +=1
+print(ans)
+
+
+
+N = input()
+
+def r(s):
+    print(s)
+    me = all(('3' in s, '5' in s, '7' in s))
+    print(me)
+    if len(s) < len(N):
+        return r(s+'3') + r(s+'5') + r(s+'7') + me
+    elif s<=N:
+        return me
+    else:
+        return 0
+print(r(''))

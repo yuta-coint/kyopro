@@ -1,0 +1,35 @@
+n = int(input())
+s = list(input())
+t = list(input())
+ABC = ["A","B","C"]
+for i in range(n):
+    for j in range(3):
+        if s[i]==ABC[j]:
+            s[i]=(j-i)%3
+        if t[i]==ABC[j]:
+            t[i]=(j-i)%3
+rem1 = [-1,-1]
+lp = n
+ok = 0
+while ok<lp:
+    a = rem1.pop()
+    b = rem1.pop()
+    if a != b or b != s[ok]:
+        rem1.append(b)
+        rem1.append(a)
+        rem1.append(s[ok])
+    ok+=1
+rem2 = [-1,-1]
+ok = 0
+while ok<lp:
+    a = rem2.pop()
+    b = rem2.pop()
+    if a != b or b != t[ok]:
+        rem2.append(b)
+        rem2.append(a)
+        rem2.append(t[ok])
+    ok+=1
+if rem1 == rem2:
+    print("YES")
+else:
+    print("NO")

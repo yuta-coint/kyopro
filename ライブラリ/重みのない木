@@ -1,0 +1,57 @@
+import sys
+sys.setrecursionlimit(300000)
+input = sys.stdin.readline
+MOD = 998244353
+N =  int(input())
+G=[[] for i in range(N+1)]
+for i in range(N-1):
+    s,t=map(int,input().split())
+    G[s].append(t)
+    G[t].append(s)
+#for i in range(N+1):G[i].sort()
+def dfs(v):
+    global max_depth
+    global depth
+    global sea
+    global mother
+    global number_of_sea
+    global check
+    #global list_of_depth
+    check[v]=1
+    for i in G[v]:
+        if check[i]==0:
+            depth += 1
+            if depth >= max_depth:
+                max_depth = depth
+                sea = i
+            elif depth == max_depth//2:
+                number_of_sea+=1
+            #list_of_depth[i] = depth
+            mother[i] = v
+            dfs(i)
+            depth -= 1
+check=[0 for i in range(N+1)]
+mother=[0 for i in range(N+1)]
+#list_of_depth = [0 for i in range(N+1)]
+check[1]=1
+sea = 0
+max_depth = 0
+number_of_sea = 1
+for i in G[1]:
+    if max_depth<2:
+        sea = i
+    depth = 1
+    dfs(i)
+check=[0 for i in range(N+1)]
+check[sea]=1
+mother[sea] = 0
+#list_of_depth[sea] = 0
+for i in G[sea]:
+    mother[i]=sea
+    depth = 1
+    #list_of_depth[i] = depth
+    dfs(i)
+#直径が求まった
+#print(max_depth)
+#親
+#print(mother)

@@ -1,0 +1,14 @@
+n = int(input())
+benefit = []
+aoki = 0
+for i in range(n):
+    a, b = map(int,input().split())
+    c = 2a + b
+    aoki = aoli + b
+    benefit.append(c)
+sort(benefit)
+ans = 0
+while(takahashi<=aoki):
+    takahashi = takahashi + benefit[ans]
+    ans = ans +1
+print(ans)

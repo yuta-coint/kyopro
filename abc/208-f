@@ -1,0 +1,50 @@
+n,m,k = map(int,input().split())
+mod = 10**9+7
+##mの(pow乗)
+def bigpower(base,pow):
+    num = 1
+    i = len(bin(pow))-3
+    while i>=0:
+        num = num*num%mod
+        if pow>>i & 1==1:
+            num = num*base%mod
+        i-=1
+    return(num)
+
+###組み合わせをmodで割った余り・クソデカ対応（pCq、計算量pq）
+def pcq(p,q):
+    powp = 0
+    com = 1
+    for i in range(q):
+        if (i+1)%mod==0:
+            powp-=1
+            com *= bigpower((i+1)//mod,mod-2)
+        else:
+            com *= bigpower(i+1,mod-2)
+        if (p-i)%mod==0:
+            powp += 1
+            com *= (p-i)//mod
+        else:
+            com *= p-i
+        com %= mod
+    return(com,powp)
+
+t,powm = pcq(m+n+k,m+k)
+ans = 0
+for i in range(k):
+    if (n-i)%mod==0:
+        powm+=1
+        t*=(n-i)//mod
+    else:
+        t*=n-i
+    t%=mod
+    if (n+m+k-i)%mod==0:
+        powm-=1
+        t*=bigpower((n+m+k-i)//mod,mod-2)
+    else:
+        t*=bigpower(n+m+k-i,mod-2)
+        t%=mod
+    if powm==0:
+        ans+=t
+    ans%=mod
+print(ans)

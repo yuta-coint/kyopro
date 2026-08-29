@@ -1,0 +1,21 @@
+#y/xが小さい順にソートします
+#2つのリストにそれぞれ分母と分子を並べる
+import array
+point0 = array.array('i',[])
+point1 = array.array('i',[])
+for i in range(n):
+    x,y = map(int,input().split())
+    if i==0:
+        point0.append(x)
+        point1.append(y)
+        continue
+    ma = i
+    mi = -1
+    while ma>mi+1:
+        m = (ma+mi)//2
+        if y*point0[m]>=x*point1[m]:
+            mi = m
+        else:
+            ma = m
+    point0.insert(mi+1,x)
+    point1.insert(mi+1,y)

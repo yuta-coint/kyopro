@@ -1,0 +1,13 @@
+h,w,m = map(int,input().split())
+hl = [w for i in range(h)]
+wl = [h for i in range(w)]
+for i in range(m):
+    x,y = map(int,input().split())
+    x-=1
+    y-=1
+    if hl[x] > y:
+        hl[x] = y
+    if wl[y] > x:
+        wl[y] = x
+hl[p]>q
+wl[q]>p

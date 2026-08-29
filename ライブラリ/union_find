@@ -1,0 +1,35 @@
+import sys
+input = sys.stdin.readline
+E,m = map(int,input().split())
+###コピペ
+#再帰のおまじないを忘れずに
+#comp_size[find(a)]でaを含む連結成分の大きさを出力
+tree = [i for i in range(E)]
+comp_size = [1 for i in range(E)]
+sys.setrecursionlimit(10**6)
+conn_comp = E
+def find(i):
+    if tree[i] == i:
+        return i
+    else:
+        tree[i]= find(tree[i])
+        return find(tree[i])
+
+def union(a,b):
+    global conn_comp
+    if tree[a] > tree[b]:
+        a,b = b,a
+    #以下二行が各成分のサイズの処理
+    if find(a)!=find(b):
+        conn_comp -= 1
+        comp_size[find(a)],comp_size[find(b)]=comp_size[find(b)]+comp_size[find(a)],comp_size[find(b)]+comp_size[find(a)]
+    tree[find(b)] = find(a)
+
+def conn_comp_enumerate():
+    chk = set()
+    r = []
+    for i in range(E):
+        if find(i) in chk:
+            continue
+        r.append(i)
+    return r

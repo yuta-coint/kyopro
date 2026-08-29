@@ -1,0 +1,16 @@
+n, k = map(int,input().split())
+syo = 1
+ans = 0
+for i in range(k+1,n):
+    syomax = n//b
+    ans += syomax*(b-k)
+    cor = n%b
+    if n >= k:
+        ans+=n-k+1
+print(ans)
+
+
+
+
+
+a = b*syo + amari(k,b-1)

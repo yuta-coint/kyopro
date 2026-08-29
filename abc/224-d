@@ -1,0 +1,36 @@
+from heapq import heappush, heappop
+INF = 10 ** 9
+E = int(input())
+V = 9
+G = [[]for i in range(V)]
+hq = [(0, "012345678")] #(distance, node)
+dist = {"012345678":0}
+for i in range(E):
+    a,b = map(int,input().split())
+    G[a-1].append(b-1)
+    G[b-1].append(a-1)
+#cnt = 0
+while hq!=[]:
+    v = heappop(hq)[1] # ノードを pop する
+    #print(v)
+    for j in G[int(v[8])]: # ノード v[8] に隣接しているノードに対して
+        i = list(v)
+        id = i.index(str(j))
+        i[id]=v[8]
+        i[8]=v[id]
+        i = "".join(i)
+        if i not in dist:
+            d = dist[v] + 1
+            dist.update(zip([i],[d]))
+            heappush(hq, (d, i))
+rev = list(map(int,input().split()))
+for i in range(8):
+    rev[i]-=1
+for i in range(9):
+    if i not in rev:
+        rev.append(i)
+rev = "".join([str(_) for _ in rev])#数字のリストを文字列に
+if rev in dist:
+    print(dist[rev])
+else:
+    print(-1)

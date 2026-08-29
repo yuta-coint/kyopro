@@ -1,0 +1,38 @@
+n = int(input())
+a = list(map(int,input().split()))
+asum = [0 for i in range(n)]
+asum[0] = a[0]
+asum[1] = a[1]
+for i in range(2,n):
+    asum[i] = asum[i-2]+a[i]
+ans = -10**9
+for i in range(n):
+    aoki = 0
+    mao = i
+    s = -10**9
+    #青木が選ぶ数で場合分け
+    for j in range(i):
+        t = 1-((i-j)%2)
+        aoki = asum[i-t]-asum[j+1]+a[j+1]
+        if s < aoki:
+            s = aoki
+            mao = j
+    for j in range(i+1,n):
+        t = 1-((i-j)%2)
+        aoki = asum[j-t]-asum[i+1]+a[i+1]
+        if s < aoki:
+            s = aoki
+            mao = j
+    #print(mao)
+    taka = 0
+    if mao>i:
+        for j in range(i,mao,2):
+            taka += a[j]
+    else:
+        for j in range(mao,i+1,2):
+            taka += a[j]
+    if taka>ans:
+        ans =taka
+    #print(taka)
+print(ans)
+#差の奇偶だけで話を済ませられることも多いから場合分けが必要な時は立ち止まってお絵描きした方がいい

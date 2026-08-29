@@ -1,0 +1,14 @@
+
+def factorization(n):
+    arr = []
+    hp = n
+    for i in range(2, int(-(-n**0.5//1))+1):
+        pow = 0
+        while hp%i==0:
+            hp //= i
+            pow += 1
+        if pow>0:
+            arr.append([i, pow])
+    if hp>1:
+        arr.append([hp,1])
+    return(arr)

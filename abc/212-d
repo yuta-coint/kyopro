@@ -1,0 +1,16 @@
+import heapq
+q = int(input())
+sumx = 0
+cnt = 0
+listx = []
+heapq.heapify(listx)
+for i in range(q):
+    qu = list(map(int,input().split()))
+    if q[0]==1:
+        x = q[1]
+        x -= sumx
+        heapq.heappush(listx,x)
+    elif q[0]==2:
+        sumx += q[1]
+    else:
+        print(heapq.heappop(listx)-sumx)

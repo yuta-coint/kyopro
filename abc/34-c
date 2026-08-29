@@ -1,0 +1,25 @@
+
+mod = 10**9+7
+##mの(pow乗)
+##mの(pow乗)
+def bigpower(base,pow):
+    num = 1
+    i = len(bin(pow))-3
+    while i>=0:
+        num = num*num%mod
+        if pow>>i & 1==1:
+            num = num*base%mod
+        i-=1
+    return(num)
+
+###組み合わせをmodで割った余り（pCq、計算量pq）
+def pcq(p,q):
+    com = 1
+    for i in range(q):
+        com *= bigpower(i+1,mod-2)
+        com *= p-i
+        com %= mod
+    return(com)
+
+w,h = map(int,input().split())
+print(pcq(w+h-2,w-1))

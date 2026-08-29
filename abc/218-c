@@ -1,0 +1,44 @@
+n = int(input())
+s = []
+sa = 0
+t1 = []
+t2 = [[0 for i in range(n)]for j in range(n)]
+t3 = [[0 for i in range(n)]for j in range(n)]
+t4 = [[0 for i in range(n)]for j in range(n)]
+for i in range(n):
+    sn = list(input())
+    s.append(sn)
+for i in range(n):
+    tn = list(input())
+    t1.append(tn)
+for i in range(n):
+    for j in range(n):
+        t2[i][j] = t1[j][n-1-i]
+        t3[i][j] = t1[n-1-i][n-1-j]
+        t4[i][j] = t1[n-1-j][i]
+aa = [s,t1,t2,t3,t4]
+check = []
+for t in aa:
+    flag = 0
+    k = 0
+    while flag == 0 and k<n:
+        for i in range(n):
+            if t[i][k]=="#":
+                flag = 1
+        k += 1
+    for i in range(n):
+        t[i] = t[i][k-1:]+t[i][:k-1]
+    flag = 0
+    k = 0
+    while flag == 0 and k<n:
+        for i in range(n):
+            if t[k][i]=="#":
+                flag = 1
+        k += 1
+    t = t[k-1:]+t[:k-1]
+    check.append(t)
+#print(check)
+if check[0] in check[1:]:
+    print("Yes")
+else:
+    print("No")

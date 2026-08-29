@@ -1,0 +1,5 @@
+#l桁の数の桁ばらし
+t = [i for i in range(l)]
+for i in range(l):
+    t[i]=s//(10**(l-i-1))
+    s = s - t[i]*(10**(l-i-1))

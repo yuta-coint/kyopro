@@ -1,0 +1,36 @@
+n = int(input())
+A = [int(input()) for i in range(n)]
+cnt = 0
+m = 0
+def insertionSort(A, n, g):
+    for i in range(g,n):
+        global cnt
+        v = A[i]
+        j = i - g
+        while j >= 0 and A[j] > v:
+            A[j+g] = A[j]
+            j = j - g
+            cnt = cnt + 1
+        A[j+g] = v
+    return 0
+def shellSort(A, n):
+    G = []
+    global m
+    global F
+    p = 1
+    while p <=n:
+        G.append(p)
+        p = 3*p+1
+        m=m+1
+    F=[0 for i in range(m)]
+    for i in range(m):
+        F[i] = G[m-1-i]
+    for i in range(m):
+        s = F[i]
+        insertionSort(A, n, s)
+shellSort(A, n)
+print(m)
+print(*F)
+print(cnt)
+for i in range(n):
+    print(A[i])

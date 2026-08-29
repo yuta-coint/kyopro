@@ -1,0 +1,8 @@
+N,W = map(int,input().split())
+ans = [0 for i in range(W+1)]
+for i in range(N):
+    v,w = map(int,input().split())
+    for i in range(W+1):
+        if i>=w and ans[i]<ans[i-w]+v:
+            ans[i] = ans[i-w]+v
+print(ans[W])

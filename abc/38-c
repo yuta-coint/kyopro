@@ -1,0 +1,14 @@
+n = int(input())
+a = list(map(int,input().split()))
+stock = 1
+last = a[0]
+ans = 0
+for i in range(1,n):
+    if a[i]>last:
+        stock+=1
+    else:
+        ans += stock*(stock+1)//2
+        stock = 1
+    last = a[i]
+ans += stock*(stock+1)//2
+print(ans)

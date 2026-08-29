@@ -1,0 +1,26 @@
+import collections
+n = int(input())
+v = list(map(int,input().split()))
+vo = []
+ve = []
+for i in range(0,n,2):
+    ve.append(v[i])
+    vo.append(v[i+1])
+ve = collections.Counter(ve)
+vo = collections.Counter(vo)
+vom = vo.most_common()[0]
+vem = ve.most_common()[0]
+if len(vo)>1:
+    vom2 = vo.most_common()[1][1]
+else:
+    vom2 = 0
+if len(ve)>1:
+    vem2 = ve.most_common()[1][1]
+else:
+    vem2 = 0
+if vom[0] != vem[0]:
+    print(n-vom[1]-vem[1])
+else:
+   ans1 = n-vom[1]-vem2
+   ans2 = n-vem[1]-vom2
+   print(min(ans1,ans2))

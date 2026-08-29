@@ -1,0 +1,27 @@
+n = int(input())
+p = list = []
+keta=1
+if n == 0:
+    print("0")
+else:
+    while n != 0:
+        if n%4 ==3:
+            p.append(keta)
+            n=n+1
+        elif n%4 ==1:
+            p.append(keta)
+            p.append(keta+1)
+            n=n-1
+        elif n%4 ==2:
+            p.append(keta+1)
+            n=n-2
+        n=n/4
+        keta =keta +2
+    m=max(p)
+    for i in range(m):
+        if m-i in p:
+            print("1", end="")
+        else:
+            print("0", end="")
+        print("0", end="")
+#改行しない出力

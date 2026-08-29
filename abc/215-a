@@ -1,0 +1,9 @@
+s = input()
+y = int(s[-1:])
+x = s[:-2]
+if y<=2:
+    print(x,"-",sep="")
+elif y>=7:
+    print(x,"+",sep="")
+else:
+    print(x)

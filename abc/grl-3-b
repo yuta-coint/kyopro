@@ -1,0 +1,40 @@
+import sys
+sys.setrecursionlimit(300000)
+import copy
+N,E =  map(int,input().split())
+G=[[] for i in range(N)]
+G_pair = []
+for i in range(E):
+    a,b=map(int,input().split())
+    G[a].append(b)
+    G[b].append(a)
+    G_pair.append([a,b])
+for i in range(N):G[i].sort()
+ord = [None for i in range(N)]
+check=[0 for i in range(N)]
+mother = [None for i in range(N)]
+lowlink = [None for i in range(N)]
+counter = 0
+ser = []
+def dfs(v):
+    global counter
+    ord[v]=counter
+    lowlink[v]=ord[v]
+    counter+=1
+    check[v]=1
+    for i in G[v]:
+        if check[i]==0:
+            mother[i] = v
+            dfs(i)
+            lowlink[v] = min(lowlink[v],lowlink[i])
+        elif i != mother[v]:
+            lowlink[v] = min(lowlink[v],ord[i])
+dfs(0)
+#print(ord)
+#print(lowlink)
+#print(mother)
+for i in range(E):G_pair[i].sort()
+G_pair.sort()
+for b in G_pair:
+    if ord[b[0]]<lowlink[b[1]] or ord[b[1]]<lowlink[b[0]]:
+        print(*b)

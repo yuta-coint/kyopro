@@ -1,0 +1,51 @@
+n,m = map(int,input().split())
+mod = 10**9+7
+##mの(pow乗)
+def bigpower(base,pow):
+    num = 1
+    devide = []
+    while pow>0:
+        if pow%2==0:
+            devide.append(2)
+            pow = pow//2
+        else:
+            devide.append(1)
+            pow -= 1
+    devide.reverse()
+    lend = len(devide)
+    db = 0
+    for i in range(lend):
+        if devide[i]==2:
+            num = num*num%mod
+        else:
+            num = num*base%mod
+    return(num)
+
+###組み合わせをmodで割った余り（pCq、計算量pq）
+def pcq(p,q):
+    com = 1
+    for i in range(q):
+        com *= bigpower(i+1,mod-2)
+        com *= p-i
+        com %= mod
+    return(com)
+
+def factorization(numa):
+    arr = []
+    hp = numa
+    for i in range(2, int(-(-numa**0.5//1))+1):
+        powa = 0
+        while hp%i==0:
+            hp //= i
+            powa += 1
+        if powa>0:
+            arr.append([i, powa])
+    if hp > 1:
+        arr.append([hp,1])
+    return(arr)
+fac = factorization(m)
+ans = 1
+for part in fac:
+    ans *= pcq(n+part[1]-1, part[1])
+    ans %= mod
+print(ans)

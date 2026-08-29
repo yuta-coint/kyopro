@@ -1,0 +1,13 @@
+import bisect
+n = int(input())
+INF = -10**9
+LIS = [INF]
+
+for i in range(n):
+    a = int(input())
+    if -a >= LIS[-1]:
+        LIS.append(-a)
+    else:
+        LIS[bisect.bisect_right(LIS, -a)] = -a
+    #print(LIS)
+print(len(LIS)-1)

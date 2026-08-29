@@ -1,0 +1,26 @@
+from heapq import heapify,heappush,heappop
+n= int(input())
+a=list(map(int,input().split()))
+al = a[:n]
+ar = a[2*n:]
+ar = list(map(lambda x: x*(-1), ar))
+suml = []
+sumr = []
+suml.append(sum(al))
+sumr.append(sum(ar))
+heapify(al)
+heapify(ar)
+for i in range(n):
+    heappush(al,a[n+i])
+    t = heappop(al)
+    suml.append(suml[i]+a[n+i]-t)
+for i in range(n):
+    heappush(ar,-a[2*n-1-i])
+    t = heappop(ar)
+    sumr.append(sumr[i]-a[2*n-1-i]-t)
+#print(suml)
+#print(sumr)
+ans = suml[0]+sumr[n]
+for i in range(n+1):
+    ans = max(ans,suml[i]+sumr[n-i])
+print(ans)

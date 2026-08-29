@@ -1,0 +1,31 @@
+import bisect
+N,K = map(int,input().split())
+a = []
+for i in range(N):
+    w = int(input())
+    a.append(w)
+N1 = N//2
+N2 = (N+1)//2
+b1 = []
+b2 = []
+for i in range(2**N1):
+    size = 0
+    for j in range(N1):
+        if (i>>j)&1 == 1:
+            size += a[j]
+    if size<=K:
+        b1.append(size)
+
+for i in range(2**N2):
+    size = 0
+    for j in range(N2):
+        if (i>>j)&1 == 1:
+            size += a[j+N1]
+    if size<=K:
+        b2.append(size)
+ans = 0
+for i in b1:
+    ans += bisect.bisect_right(b2,K-j)-bisect.bisect_left(b2,K-j)
+#print(b1)
+#print(b2)
+print(ans)

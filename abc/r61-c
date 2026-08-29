@@ -1,0 +1,22 @@
+s = input()
+moji = len(s)-1
+l = list = []
+wa=0
+k=0
+baai = 2**moji
+for i in range(baai):
+    t = str(bin(i))  #二進法の文字列に変換
+    t=t[2:]
+    t = t.zfill(moji)   #0で埋める
+    j=0
+    for i in range(moji):
+        k = int(t[i])
+        if k == 1:
+            kazu=s[j:i+1]
+            kazu = int(kazu)
+            wa = wa + kazu
+            j=i+1
+    kazu = s[j:moji+1]
+    kazu = int(kazu)
+    wa=wa+kazu
+print(wa)

@@ -1,0 +1,39 @@
+t = int(input())
+for i in range(t):
+    ans = 0
+    p,q,r = map(int,input().split())
+    q = q//2
+    if q <= r:
+        ans += q
+        r-=q
+        q = 0
+    else:
+        ans += r
+        q -= r
+        r = 0
+    if p >=q*2:
+        ans += q
+        p -= 2*q
+        q = 0
+    else:
+        ans += p//2
+        q -= p//2
+        p %= 2
+    if p >= r//2:
+        ans += r//2
+        p -= r//2
+        r %= 2
+    else:
+        ans+=p
+        r -= 2*p
+        p -= p
+    if p >= 3*r:
+        ans += r
+        r -= r
+        p -= 3*r
+    else:
+        ans += p//3
+        r -= p//3
+        p -= p
+    ans += p//5
+    print(ans)

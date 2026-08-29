@@ -1,0 +1,19 @@
+n,k = map(int,input().split())
+a = list(map(int,input().split()))
+f = list(map(int,input().split()))
+a.sort()
+f.sort(reverse=True)
+m = 0
+M = 10**12
+while m<M:
+    time = (m+M)//2
+    train = 0
+    for i in range(n):
+        ideal = time//f[i]
+        if ideal < a[i]:
+            train += a[i]-ideal
+    if train <= k:
+        M = time
+    else:
+        m = time+1
+print(m)

@@ -1,0 +1,12 @@
+n = int(input())
+A = list(map(int, input().split()))
+kaisu = 0
+for i in range(n):
+    for j in reversed(range(i+1,n)):
+       if A[j] < A[j-1]:
+           t = A[j]
+           A[j] = A[j-1]
+           A[j-1] = t
+           kaisu = kaisu+1
+print(*A)
+print(kaisu)

@@ -1,0 +1,17 @@
+n,m = map(int,input().split())
+flag = 1
+b0 = list(map(int,input().split()))
+base = b0[0]
+a = base%7
+for j in range(1,m):
+    if b0[j]!=b0[j-1]+1 or b0[j]%7==1:
+        flag = 0
+for i in range(1,n):
+    b = list(map(int,input().split()))
+    for j in range(m):
+        if b[j]-(7*i)-j!=base:
+            flag =0
+if flag==1:
+    print("Yes")
+else:
+    print("No")

@@ -1,0 +1,11 @@
+n = int(input())
+a = []
+for i in range(n):
+    an = int(input())
+    a.append(an)
+b = sorted(set(a))
+d = {v:i for i, v in enumerate(b)}
+#aの要素に対して「vに対してd[v]を返す」
+ans = list(map(lambda v:d[v],a))
+for i in range(n):
+    print(ans[i])

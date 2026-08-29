@@ -1,0 +1,25 @@
+import bisect
+from itertools import product
+N,K,L,R = map(int,input().split())
+a = list(map(int,input().split()))
+N1 = N//2
+N2 = (N+1)//2
+b1 = [[] for i in range(N1+1)]
+b2 = [[] for i in range(N2+1)]
+A1 = a[:N1]
+A2 = a[N1:]
+for bits in product([0,1],repeat=N1):
+    values = [x for bit, x in zip(bits, A1) if bit == 1]
+    b1[sum(bits)].append(sum(values))
+
+for bits in product([0,1],repeat=N2):
+    values = [x for bit, x in zip(bits, A2) if bit == 1]
+    b2[sum(bits)].append(sum(values))
+for i in b2:
+    i.sort()
+ans = 0
+for i in range(N1+1):
+    if K>=i and K<=i+N2:
+        for j in b1[i]:
+            ans += bisect.bisect_right(b2[K-i],R-j)-bisect.bisect_left(b2[K-i],L-j)
+print(ans)

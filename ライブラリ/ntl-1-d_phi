@@ -1,0 +1,20 @@
+n = int(input())
+def factorization(numa):
+    arr = []
+    hp = numa
+    for i in range(2, int(-(-numa**0.5//1))+1):
+        while hp%i==0:
+            hp //= i
+            arr.append(i)
+    if hp>1:
+        arr.append(hp)
+    return(arr)
+def phi(numb):
+    phin = numb
+    fac = factorization(numb)
+    p = set(fac)
+    for i in p:
+        phin *= i-1
+        phin //= i
+    return(phin)
+print(phi(n))

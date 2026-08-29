@@ -1,0 +1,18 @@
+n = int(input())
+g = [list(input().split()) for i in range(n)]
+l = []
+o = ['a' for i in range(n)]
+for i in range(n):
+    o[i] = g[i][0]
+for i in range(n):
+    s[i] = int(g[i][1])
+for i in range(n):
+    if o[i] == "insert":
+        l.insert(0,g[i][1])
+    elif o[i] == "delete":
+        l.remove(g[i][1])
+    elif o[i] == "deleteFirst":
+        l.pop(0)
+    else:
+        l.pop(-1)
+print(*l)

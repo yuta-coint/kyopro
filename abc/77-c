@@ -1,0 +1,32 @@
+n = int(input())
+a = list(map(int,input().split()))
+b = list(map(int,input().split()))
+c = list(map(int,input().split()))
+a.sort()
+b.sort()
+c.sort()
+b.append(a[n-1]+1)
+c.append(b[n-1]+1)
+#print(a)
+#print(b)
+#print(c)
+patb = []
+cntc = 0
+for i in range(n):
+    while b[i]>=c[cntc]:
+        cntc +=1
+    patb.append(n-cntc)
+sumb = sum(patb)
+sumpat = [sumb]
+for i in range(n):
+    sumb -= patb[i]
+    sumpat.append(sumb)
+#print(patb)
+#print(sumpat)
+ans = 0
+cntb = 0
+for i in range(n):
+    while a[i]>=b[cntb]:
+        cntb +=1
+    ans += sumpat[cntb]
+print(ans)

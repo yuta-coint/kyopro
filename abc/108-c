@@ -1,0 +1,8 @@
+n,k = map(int,input().split())
+ans = 0
+nk = n//k
+nk2 = (k//2+n)//k
+ans += nk**3
+if k%2 == 0:
+    ans += nk2**3
+print(ans)

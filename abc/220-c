@@ -1,0 +1,11 @@
+n = int(input())
+a = list(map(int,input().split()))
+x = int(input())
+asum = sum(a)
+ans = (x//asum)*n
+x %= asum
+i =0
+while x > 0:
+    x -= a[i]
+    i += 1
+    ans += 1

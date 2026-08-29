@@ -1,0 +1,17 @@
+s = input()
+t = s.count("o")
+q = s.count("?")
+per = t + q
+if t > 4:
+    ans = 0
+if t ==4:
+    ans = 24
+if t ==3:
+    ans = 24*q + 36
+if t ==2:
+    ans =14+  (36*q) + (12*q*(q-1))
+if t ==1:
+    ans = (per**4)-((per-1)**4)
+if t ==0:
+    ans = per**4
+print(ans)

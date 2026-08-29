@@ -1,0 +1,41 @@
+from collections import deque
+import sys
+INF = 1<<30
+q = deque()
+h,w = map(int,sys.stdin.readline().split())
+maze = [[1 for j in range(w)] for i in range(h)]
+dist = [[INF for j in range(w)] for i in range(h)]
+check = [[True for j in range(w)] for i in range(h)]
+dist[0][0] = 0
+check[0][0]=False
+q.append([0,0])
+for i in range(h):
+    c = list(sys.stdin.readline())
+    for j in range(w):
+        if c[j] == "#":
+            maze[i][j] = 0
+def udsub(a,b,d):
+    if dist[a][b]>d+1:
+        dist[a][b] = d+1
+        q.appendleft((a,b))
+def update(a,b,d):
+    if maze[a][b] == 1:
+        check[a][b]=False
+        q.append((a,b))
+        if dist[a][b]>d:
+            dist[a][b] = d
+    else:
+        check[a][b] = False
+        for da in range(-1,2):
+            for db in range(-1,2):
+                if a+da>=0 and a+da<h and b+db>=0 and b+db<w:
+                    udsub(a+da,b+db,d)
+while q:
+    r,s = q.pop()
+    #print(r,s)
+    dq = dist[r][s]
+    for i,j in [(-1,0),(1,0),(0,1),(0,-1)]:
+        if r+i>=0 and r+i<h and s+j>=0 and s+j<w and check[r+i][s+j]:
+            update(r+i,s+j,dq)
+    #print(dist)
+print(dist[h-1][w-1])

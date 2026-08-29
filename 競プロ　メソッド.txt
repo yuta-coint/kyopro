@@ -1,0 +1,54 @@
+
+順序全探索…54-c
+二種類…207-c
+平方数判定…86-b
+素因数分解、nCr…110-d(コーナーケースに注意)
+素因数分解…ntl-1-a
+約数列挙…222-g?
+素数列挙…sieve_of
+素因数列挙-230-g
+DFS…213-d,67-d,75-c
+帰りがけ…edpc-p
+オイラーツアー…294-g
+木DP…70-d,130-d
+全方位木dp…edpc-v
+BFS…マス目ならnada-c,RoadとTownのやつ,普通な270-c
+マス目連結判定
+再帰回数増やすおまじないが必須!!!!
+union find/最小全域木…grl-2-a
+LIS…dpl-1-d
+座標圧縮…36-c
+二次元座圧…213-c
+有向グラフダイクストラ…grl-1-a
+完全グラフダイクストラ…79-d
+ベルマン・フォード…grl-1-b
+ワーシャルフロイド…grl-1-c
+幅優先ダイクストラ…bfsdj
+(87-d)…重み付きunion-find
+合計S以上の最短部分列…dsl3-a
+部分木の大きさ…220-f
+フロー…241-g
+掃き出し法…type57
+正方形判定…275-c
+オイラーツアーの出力…grl-5-d
+行列累乗…edpc-r
+部分集合の部分集合を列挙…edpc-u
+区間2乗和の遅延評価セグメント木…455-f
+約数格子でのdp
+xor畳み込み…r222-e.cpp
+Convex-Hull-Trick…356-g
+
+キューqに対して空列をq == []としてはいけない
+q.emptyとする
+
+BITを使うときはBITを呼び出すときに引数を1大きくしておく
+
+n行にわたって整数が入力される場合
+import sys
+input = sys.stdin.readline
+n = int(input())
+a = [int(input()) for _ in range(n)]
+
+二変数リストを二つ目の変数に関してソート
+from operator import itemgetter
+a.sort(key=itemgetter(1))

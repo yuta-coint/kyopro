@@ -1,0 +1,30 @@
+n, q = map(int,input().split())
+name = [i for i in range(n)]
+time = [i for i in range(n)]
+sname = [i for i in range(n)]
+stime = [i for i in range(n)]
+seiri = [i for i in range(n)]
+f = 0
+for i in range(n):
+    sname[i], stime[i] = input().split()
+    name[i] = sname[i]
+    time[i] = int(stime[i])
+sousa = 0
+jikan = 0
+while len(name)>0:
+    if time[sousa]<=q:
+        f = seiri[sousa]
+        jikan = jikan + time[sousa]
+        time.pop(sousa)
+        name.pop(sousa)
+        seiri.pop(sousa)
+        print(sname[f], jikan)
+        if sousa == len(name):
+            sousa = 0
+    else:
+        time[sousa] = time[sousa] - q
+        jikan = jikan + q
+        if sousa == len(name)-1:
+            sousa = 0
+        else:
+            sousa = sousa + 1

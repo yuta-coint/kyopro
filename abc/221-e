@@ -1,0 +1,33 @@
+n = int(input())
+a = list(map(int,input().split()))
+b = sorted(set(a))
+d = {v:i for i, v in enumerate(b)}
+#aの要素に対して「vに対してd[v]を返す」
+a = list(map(lambda v:d[v],a))
+BIT = [0 for i in range(n+1)]
+def add(i,x):
+    while i<=n:
+        BIT[i]+=x
+        BIT[i] %= 998244353
+        i += (i&-i)
+def getSum(x):
+    i = x
+    gs = 0
+    while i>0:
+        gs+=BIT[i]
+        gs %= 998244353
+        i -= (i&-i)
+    return gs
+t = 1
+add(a[0]+1,1)
+s = 1
+ans = 0
+for i in range(1,n):
+    ans += getSum(a[i])*s
+    ans %= 998244353
+    t *= 499122177
+    t %= 998244353
+    add(a[i]+1,t)
+    s*=2
+    s%=998244353
+print(ans)

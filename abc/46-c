@@ -1,0 +1,9 @@
+n = int(input())
+T = 1
+A = 1
+for i in range(n):
+    t,a = map(int,input().split())
+    k = max((T-1)//t+1,(A-1)//a+1)
+    T = k*t
+    A = k*a
+print(T+A)

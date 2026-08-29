@@ -1,0 +1,20 @@
+s = input().split()
+t = []
+p=0
+while len(s)>0:
+    if s[0].isdecimal() == True:
+        t.insert(0,s[0]) #スタックを使うときの挿入
+    elif s[0] == "+":
+        p = int(t[0])+int(t[1])
+        t.pop(0)
+        t[0]=p
+    elif s[0] == "-":
+        p = int(t[1])-int(t[0])
+        t.pop(0)
+        t[0]=p
+    else:
+        p = int(t[0])*int(t[1])
+        t.pop(0)
+        t[0]=p
+    s.pop(0)
+print(t[0])

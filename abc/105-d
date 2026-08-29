@@ -1,0 +1,33 @@
+n,m = map(int,input().split())
+a = list(map(int,input().split()))
+
+def pcq(p,q):
+    com = 1
+    for i in range(q):
+        com *= p-i
+        com //= i+1
+    return(com)
+
+suma = [0]
+t = 0
+for i in range(n):
+    t += a[i]
+    t %= m
+    suma.append(t)
+suma.sort()
+bom = 0
+temp = suma[0]
+ans = 0
+#print(suma)
+for i in range(n+1):
+    if suma[i]==temp:
+        bom += 1
+    elif bom == 1:
+        temp = suma[i]
+    else:
+        ans+=pcq(bom,2)
+        temp = suma[i]
+        bom = 1
+if bom>1:
+    ans+=pcq(bom,2)
+print(ans)

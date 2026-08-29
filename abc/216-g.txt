@@ -1,0 +1,14 @@
+#RSQ
+n,q = map(int,input().split())
+BIT = [0 for i in range(n+1)]
+def add(i,x):
+    while i<=n:
+        BIT[i]+=x
+        i += (i&-i)
+#xまでの和をとる
+def getSum(x):
+    i = x
+    gs = 0
+    while i>0:
+        gs+=BIT[i]
+        i -= (i&-i)

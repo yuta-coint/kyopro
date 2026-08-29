@@ -1,0 +1,16 @@
+import math
+n = int(input())
+x = [0 for i in range(n)]
+y = [0 for i in range(n)]
+%precision 4
+saityou = 0
+for i in range(n):
+    x[i], y[i] = map(int, input().split())
+for i in range(n):
+    for j in range(n):
+        l = ((x[i]-x[j])*(x[i]-x[j]))+((y[i]-y[j])*(y[i]-y[j]))
+        if l >=saityou:
+            saityou = l
+saityou = math.sqrt(saityou)
+print(saityou)
+print("\n")

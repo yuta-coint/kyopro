@@ -1,0 +1,9 @@
+norma = ["H","2B","3B","HR"]
+ans = "Yes"
+for i in range(4):
+    s = input()
+    if s in norma:
+        norma.remove(s)
+    else:
+        ans = "No"
+print(ans)

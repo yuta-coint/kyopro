@@ -1,0 +1,33 @@
+N,L = map(int,input().split())
+lenn = 0
+p = N-1
+while p>0:
+    p //= 3
+    lenn += 1
+rem = L- lenn
+
+for i in range(N):
+    ans1 = [0 for i in range(rem)]
+    ans2 = [1 for i in range(rem)]
+    ans3 = [2 for i in range(rem)]
+    ans1[0] = 2
+    ans2[0] = 1
+    ans3[0] = 0
+    k = i
+    for j in reversed(range(lenn)):
+        if k//(3**j) == 2:
+            ans1.append(2)
+            ans2.append(1)
+            ans3.append(0)
+        elif k//(3**j) == 1:
+            ans1.append(1)
+            ans2.append(0)
+            ans3.append(2)
+        else:
+            ans1.append(0)
+            ans2.append(2)
+            ans3.append(1)
+        k %= 3**j
+    print(*ans1, sep = "")
+    print(*ans2, sep = "")
+    print(*ans3, sep = "")

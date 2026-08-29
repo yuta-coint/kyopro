@@ -1,0 +1,18 @@
+n = int(input())
+sn = list(str(n))
+ans = 0
+k = 1
+for i in reversed(renge(len(sn))):
+    ans += i*k
+    k *= 10
+k //= 10
+k = 10**(len(sn))
+for i in range(len(sn)):
+    t = 10**i
+    t *= k//9
+    mt = t + 10**i
+    if n >= mt:
+        ans += 10**i
+    elif n >= t:
+        ans += n-t
+print(ans)

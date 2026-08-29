@@ -1,0 +1,39 @@
+import copy
+n = int(input())
+t = list(map(int,input().split()))
+v = list(map(int,input().split()))
+spc = [0]
+maxspeed = [0]
+time = 0
+for i in range(n):
+    for j in range(t[i]):
+        maxspeed.append(v[i])
+    time += t[i]
+    spc.append(time)
+absspeed = copy.copy(maxspeed)
+runtime = len(maxspeed)-1
+vmax = [i for i in range(runtime+1)]
+for i in range(runtime+1):
+    maxspeed[i]=min(maxspeed[i],vmax[i])
+for j in range(n):
+    for i in range(spc[j]):
+        vmax[i] = v[j] + (spc[j]-i)
+    for i in range(spc[j],spc[j+1]):
+        vmax[i] = v[j]
+    for i in range(spc[j+1],runtime+1):
+        vmax[i] = v[j] + (i-spc[j+1])
+    for i in range(runtime+1):
+        maxspeed[i]=min(maxspeed[i],vmax[i])
+#print(vmax)
+for i in range(runtime+1):
+    vmax[i] = runtime-i
+plus = 0
+for i in range(runtime+1):
+    maxspeed[i]=min(maxspeed[i],vmax[i])
+#print(absspeed)
+#print(maxspeed)
+for i in range(runtime):
+    if maxspeed[i]==maxspeed[i+1]:
+        if maxspeed[i+1]<absspeed[i+1]:
+            plus += 1
+print((4*sum(maxspeed)+plus)/4)

@@ -1,0 +1,27 @@
+n = int(input())
+xyh = []
+for i in range(n):
+    a = list(map(int,input().split()))
+    xyh.append(a)
+xyh.sort(key=lambda x: x[2])
+h = [0,0,0,0,0]
+for i in range(101):
+    for j in range(101):
+        #高さの候補
+        h[1] = xyh[n-1][2]+(xyh[n-1][0]-i)+(xyh[n-1][1]-j)
+        h[2] = xyh[n-1][2]+(xyh[n-1][0]-i)-(xyh[n-1][1]-j)
+        h[3] = xyh[n-1][2]-(xyh[n-1][0]-i)+(xyh[n-1][1]-j)
+        h[4] = xyh[n-1][2]-(xyh[n-1][0]-i)-(xyh[n-1][1]-j)
+        for t in range(1,5):
+            flag = 1
+            for k in range(n):
+                height = max(h[t]-abs(i-xyh[k][0])-abs(j-xyh[k][1]),0)
+                if h[t] > 0 and height == xyh[k][2]:
+                    continue
+                else:
+                    flag = 0
+                    break
+            if flag == 1:
+                ans = [i,j,h[t]]
+                break
+print(*ans)

@@ -1,0 +1,21 @@
+n,a,b = map(int,input().split())
+ans = []
+if n>a*b:
+    print(-1)
+elif n<=a+b-2:
+    print(-1)
+else:
+    time = [1 for i in range(a)]
+    if b>1
+        k = (n-a)//(b-1)
+        for i in range(k):
+            time[i]=b
+        r = (n-a)%(b-1)
+        if r>0:
+            time[k]=r+1
+    poll = 1
+    for i in range(a):
+        for j in reversed(range(time[i])):
+            ans.append(poll+j)
+        poll += time[i]
+    print(*ans)

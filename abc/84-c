@@ -1,0 +1,12 @@
+n = int(input())
+ans = [0]
+for i in range(n-1):
+    c,s,f = map(int,input().split())
+    for j in range(i+1):
+        if ans[j]<s:
+            ans[j]=s+c
+        else:
+            ans[j]=((ans[j]-1)//f+1)*f+c
+    ans.append(0)
+for i in range(n):
+    print(ans[i])

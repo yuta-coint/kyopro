@@ -1,0 +1,25 @@
+s = list(input())
+x = 0
+while x<=len(s)-5:
+    five = s[x]+s[x+1]+s[x+2]+s[x+3]+s[x+4]
+    if five == "dream":
+        if x==len(s)-7 and s[x+5]+s[x+6]=="er":
+            x+=7
+        elif x<len(s)-7 and s[x+5]+s[x+6]=="er" and s[x+7]!="a"
+            x+=7
+        else:
+            x+=5
+    elif five =="erase":
+        if x<=len(s)-6 and s[x+5]=="r":
+            x+=6
+        else:
+            x+=5
+    else:
+        print("NO")
+        break
+else:
+    print(x)
+    if x==len(s):
+        print("YES")
+    else:
+        print("NO")

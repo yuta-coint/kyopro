@@ -1,0 +1,31 @@
+import sys
+import array
+input = sys.stdin.readline
+n = int(input())
+point0 = array.array('i',[])
+point1 = array.array('i',[])
+for i in range(n):
+    x,y = map(int,input().split())
+    if i==0:
+        point0.append(x)
+        point1.append(y)
+        continue
+    ma = i
+    mi = -1
+    while ma>mi+1:
+        m = (ma+mi)//2
+        if y*(point0[m]-1)>=(x-1)*point1[m]:
+            mi = m
+        else:
+            ma = m
+    point0.insert(mi+1,x)
+    point1.insert(mi+1,y)
+k = [1,0]
+ans = 0
+#print(point0)
+#print(point1)
+for i in range(n):
+    if (point1[i]-1)*(k[0]-1)>=point0[i]*k[1]:
+        ans+=1
+        k = [point0[i],point1[i]]
+print(ans)

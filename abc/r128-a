@@ -1,0 +1,15 @@
+n = int(input())
+a = list(map(int,input().split()))
+ans = [0 for i in range(n)]
+start = 0
+for i in range(n-1):
+    if a[i]<a[i+1]:
+        if start<i:
+            ans[start]=1
+            ans[i]=1
+        start = i+1
+
+if start<n-1:
+    ans[start]=1
+    ans[i]=1
+print(*ans)

@@ -1,0 +1,12 @@
+n = int(input())
+w = list(map(int,input().split()))
+w.sort()
+w1 = 0
+w2 = sum(w)
+ans = 10**9
+for i in range(n):
+    w1 += w[i]
+    w2 -= w[i]
+    if abs(w1-w2)<ans:
+        ans = abs(w1-w2)
+print(ans)

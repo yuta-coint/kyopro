@@ -1,0 +1,27 @@
+n,q = map(int,input().split())
+BIT = [0 for i in range(n+1)]
+def add(i,x):
+    while i<=n:
+        BIT[i]+=x
+        i += (i&-i)
+
+def getSum(x):
+    i = x
+    gs = 0
+    while i>0:
+        gs+=BIT[i]
+        i -= (i&-i)
+    return gs
+
+def raq(x1,x2,d):
+    add(x1,d)
+    add(x2+1,-d)
+
+for i in range(q):
+    query = list(map(int,input().split()))
+    if query[0] ==0:
+    #query[1]からquery[2]までquery[3]を足す
+        add(query[1],query[3])
+        add(query[2]+1,query[3]*(-1))
+    else:
+        print(getSum(query[1]))

@@ -1,0 +1,19 @@
+n = int(input())
+big = 10**8
+l = []
+bl = []
+time = []
+for i in range(n):
+    a,b = map(int,input().split())
+    l.append(a)
+    bl.append(b)
+    time.append(a*big//b)
+st = sum(time)//2
+j = 0
+ans = 0
+while st>time[j]:
+    ans += l[j]
+    st-=time[j]
+    j+=1
+ans += st*bl[j]
+print(ans/big)

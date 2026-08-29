@@ -1,0 +1,25 @@
+n,d = map(int,input().split())
+mod = 998244353
+pow = [0 for i in range(d+n)]
+ans = 0
+for i in range(d+1):
+    i2 = d-i
+    if i<0 or i2<0 or i>n or i2>n:
+        continue
+    if i == 0 or i2 == 0:
+        pow[n-1] += 1
+        pow[d-1] -= 1
+    else:
+        high = max(i,i2)
+        pow[d+n-2-high]+=1
+        pow[d-2]-=1
+#print(pow)
+pow2 = 1
+for i in range(d+n):
+    ans += pow2*pow[i]
+    pow2 *= 2
+    ans %= mod
+    pow2 %= mod
+ans *= 2
+ans %=mod
+print(ans)

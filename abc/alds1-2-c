@@ -1,0 +1,42 @@
+n = int(input())
+A = list(map(str,input().split()))
+B = A[:]
+v = list = [0 for i in range(n)]
+for i in range(n):
+    k = A[i]
+    v[i] = int(k[1:])
+w= v[:]
+kaisu = 0
+for i in range(n):
+    for j in reversed(range(i+1,n)):
+       if v[j] < v[j-1]:
+           t = A[j]
+           A[j] = A[j-1]
+           A[j-1] = t
+           t = v[j]
+           v[j] = v[j-1]
+           v[j-1] = t
+print(*A)
+print("Stable")
+#選択ソート
+kaisu = 0
+for i in range(n):
+    mini = i
+    for j in range(i,n):
+        if w[j] < w[mini]:
+            mini = j
+    t = B[i]
+    B[i] = B[mini]
+    B[mini] = t
+    t = w[i]
+    w[i] = w[mini]
+    w[mini] = t
+print(*B)
+flag = 0
+for i in range(n):
+    if A[i] != B[i]:
+        flag = 1
+if flag == 0:
+    print("Stable")
+else:
+    print("Not stable")

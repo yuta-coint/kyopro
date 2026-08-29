@@ -1,0 +1,10 @@
+n = int(input())
+ans = [0 for i in range(n+1)]
+for i in range(n-1):
+    a,b = map(int,input().split())
+    ans[a]+=1
+    ans[b]+=1
+if n-1 in ans:
+    print("Yes")
+else:
+    print("No")

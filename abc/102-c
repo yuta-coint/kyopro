@@ -1,0 +1,16 @@
+n = int(input())
+a = list(map(int, input().split()))
+
+b=a
+for k in range(n):
+    a[k]=a[k]-k
+
+a=sorted(a)
+m=n//2
+
+def sad(p):
+    return abs(p-a[m])
+for k in range(n):
+    b[k]=sad(a[k])
+x=sum(b)
+print(x)

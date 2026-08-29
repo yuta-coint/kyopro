@@ -1,0 +1,38 @@
+abcd = list(input())
+a = int(abcd[0])
+b = int(abcd[1])
+c = int(abcd[2])
+d = int(abcd[3])
+if a+b+c+d == 7:
+     p = "+"
+     q = "+"
+     r = "+"
+elif a+b+c-d == 7:
+     p = "+"
+     q = "+"
+     r = "-"
+elif a+b-c+d == 7:
+     p = "+"
+     q = "-"
+     r = "+"
+elif a+b-c-d == 7:
+     p = "+"
+     q = "-"
+     r = "-"
+elif a-b+c+d == 7:
+     p = "-"
+     q = "+"
+     r = "+"
+elif a-b+c-d == 7:
+     p = "-"
+     q = "+"
+     r = "-"
+elif a-b-c+d == 7:
+     p = "-"
+     q = "-"
+     r = "+"
+elif a-b-c-d == 7:
+     p = "-"
+     q = "-"
+     r = "-"
+print(a,p,b,q,c,r,d,"=7", sep="")
